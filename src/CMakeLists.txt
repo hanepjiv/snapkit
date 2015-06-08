@@ -1,0 +1,88 @@
+# ##############################################################################
+# The MIT License (MIT)
+#
+# Copyright (c) <2015> hanepjiv <hanepjiv@gmail.com>
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+# ==============================================================================
+# settings ---------------------------------------------------------------------
+add_definitions(-DHAVE_CONFIG_H)
+include_directories(${SNAPKIT_INCLUDE_DIRS})
+link_directories(${SNAPKIT_LIBRARY_DIRS})
+# ==============================================================================
+# snapkit  --------------------------------------------------------------------
+set(SNAPKIT_SOURCES
+  ${abs_top_srcdir}/include/snapkit/call.h
+  ${abs_top_srcdir}/include/snapkit/declspec.h
+  ${abs_top_srcdir}/include/snapkit/begin.h
+
+  ${abs_top_srcdir}/include/snapkit/debug.h
+
+  ${abs_top_srcdir}/src/snapkit.cc
+  )
+# ------------------------------------------------------------------------------
+add_library(snapkit SHARED ${SNAPKIT_SOURCES})
+target_link_libraries(snapkit
+  )
+set_target_properties(snapkit
+  PROPERTIES
+  OUTPUT_NAME snapkit
+  VERSION ${SNAPKIT_RELEASE}
+  SOVERSION ${SNAPKIT_SOVERSION}
+  COMPILE_FLAGS "-DSNAPKIT_EXPORTS ${SNAPKIT_CXX_FLAGS}"
+  )
+# ------------------------------------------------------------------------------
+add_library(snapkit-static STATIC ${SNAPKIT_SOURCES})
+target_link_libraries(snapkit-static
+  )
+set_target_properties(snapkit-static
+  PROPERTIES
+  OUTPUT_NAME snapkit
+  COMPILE_FLAGS "-DSNAPKIT_EXPORTS ${SNAPKIT_CXX_FLAGS}"
+  )
+# ------------------------------------------------------------------------------
+install(TARGETS
+  snapkit
+  snapkit-static
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  )
+# ==============================================================================
+# tests  -----------------------------------------------------------------------
+if(SNAPKIT_ENABLE_TEST)
+  # ----------------------------------------------------------------------------
+  set(SNAPKIT_SRC_TEST_EXE)
+  # splint  --------------------------------------------------------------------
+  if(SPLINT)
+    add_test(splint-src ${SPLINT_SH})
+    list(APPEND SNAPKIT_SRC_TEST_EXE splint-src)
+  endif()
+  # cpplint  -------------------------------------------------------------------
+  if(PYTHON2)
+    add_test(cpplint-src ${CPPLINT_SH})
+    list(APPEND SNAPKIT_SRC_TEST_EXE cpplint-src)
+  endif()
+  # environment  ---------------------------------------------------------------
+  set(TEST_ENV_ "${TEST_ENV}")
+  list(APPEND TEST_ENV_ "SRCDIR=${abs_top_srcdir}/src")
+  list(APPEND TEST_ENV_ "BUILDDIR=${CMAKE_CURRENT_BINARY_DIR}")
+  set_tests_properties(${SNAPKIT_SRC_TEST_EXE}
+    PROPERTIES ENVIRONMENT "${TEST_ENV_}")
+endif()

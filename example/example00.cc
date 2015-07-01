@@ -8,7 +8,7 @@
  *
  *  @author hanepjiv <hanepjiv@gmail.com>
  *  @since 2015/05/24
- *  @date 2015/06/08
+ *  @date 2015/06/09
  */
 
 
@@ -40,7 +40,7 @@
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif  // HAVE_CONFIG_H
+#endif  /* HAVE_CONFIG_H */
 
 
 #include <snapkit/debug.h>

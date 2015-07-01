@@ -3,12 +3,12 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
-Name: @OBORO_PACKAGE@
+Name: @SNAPKIT_PACKAGE@
 Description:
 URL:
-Version: @OBORO_RELEASE@
+Version: @SNAPKIT_RELEASE@
 Requires:
 Requires.private:
 Conflicts:
-Cflags: -I${includedir} @OBORO_THREAD_CFLAGS@
-Libs: -L${libdir} @OBORO_THREAD_LIBS@
+Cflags: -I${includedir} @SNAPKIT_THREAD_CFLAGS@
+Libs: -L${libdir} @SNAPKIT_THREAD_LIBS@

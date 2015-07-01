@@ -23,13 +23,12 @@
 # ##############################################################################
 # snapkit  ====================================================================
 # ------------------------------------------------------------------------------
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.2)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
   "${CMAKE_CURRENT_SOURCE_DIR}/Modules/")
 include(FindPkgConfig)
 include(FindThreads)
 include(CCxxFlags)
-include(SnapkitOptions)
 # ------------------------------------------------------------------------------
 set(SNAPKIT_PACKAGE "snapkit")
 string(TOUPPER ${SNAPKIT_PACKAGE} SNAPKIT_PACKAGE_UPPER)
@@ -98,7 +97,6 @@ set(includedir "\${prefix}/include")
 set(SNAPKIT_INCLUDE_DIRS "")
 list(APPEND SNAPKIT_INCLUDE_DIRS ${CMAKE_CURRENT_BINARY_DIR})
 list(APPEND SNAPKIT_INCLUDE_DIRS ${abs_top_srcdir}/include)
-list(APPEND SNAPKIT_INCLUDE_DIRS ${LUA_INCLUDE_DIR})
 list(APPEND SNAPKIT_INCLUDE_DIRS ${Boost_INCLUDE_DIR})
 list(APPEND SNAPKIT_INCLUDE_DIRS ${LTDL_INCLUDE_DIR})
 list(REMOVE_DUPLICATES SNAPKIT_INCLUDE_DIRS)
@@ -106,14 +104,12 @@ list(REMOVE_ITEM SNAPKIT_INCLUDE_DIRS "")
 # ------------------------------------------------------------------------------
 set(SNAPKIT_LIBRARY_DIRS "")
 list(APPEND SNAPKIT_LIBRARY_DIRS ${CMAKE_CURRENT_BINARY_DIR}/src)
-list(APPEND SNAPKIT_LIBRARY_DIRS ${LUA_LIBRARY_DIR})
 list(APPEND SNAPKIT_LIBRARY_DIRS ${Boost_LIBRARY_DIR})
 list(APPEND SNAPKIT_LIBRARY_DIRS ${LTDL_LIBRARY_DIR})
 list(REMOVE_DUPLICATES SNAPKIT_LIBRARY_DIRS)
 list(REMOVE_ITEM SNAPKIT_LIBRARY_DIRS "")
 # ------------------------------------------------------------------------------
 set(SNAPKIT_LIBRARIES "")
-list(APPEND SNAPKIT_LIBRARIES ${LUA_LIBRARIES})
 list(APPEND SNAPKIT_LIBRARIES ${LTDL_LIBRARIES})
 list(APPEND SNAPKIT_LIBRARIES ${CMAKE_THREAD_LIBS_INIT})
 list(APPEND SNAPKIT_LIBRARIES ${CMAKE_DL_LIBS})
@@ -144,6 +140,7 @@ install(FILES
 # ##############################################################################
 # test =========================================================================
 # ------------------------------------------------------------------------------
+option(SNAPKIT_ENABLE_TEST "Test feature." OFF)
 if(SNAPKIT_ENABLE_TEST)
   # ============================================================================
   # ----------------------------------------------------------------------------

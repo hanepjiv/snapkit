@@ -49,20 +49,37 @@ set(SNAPKIT_RELEASE "${SNAPKIT_MAJOR}.${SNAPKIT_AGE}.${SNAPKIT_REVISION}")
 set(SNAPKIT_SOVERSION "${SNAPKIT_MAJOR}")
 # ##############################################################################
 # flags  =======================================================================
+if (CMAKE_COMPILER_IS_GNUCC OR
+    CMAKE_C_COMPILER_ID STREQUAL "Clang")       # GCC or Clang  ================
+  set(SNAPKIT_C_CXX_FLAGS_DEBUG "-DSNAPKIT_DEBUG")
+  set(SNAPKIT_C_CXX_FLAGS_RELEASE "-DNDEBUG")
+  set(SNAPKIT_C_CXX_FLAGS "-fno-asm -fno-builtin")
+  set(SNAPKIT_C_FLAGS "${SNAPKIT_C_CXX_FLAGS} -std=c99")
+  set(SNAPKIT_CXX_FLAGS "${SNAPKIT_C_CXX_FLAGS} -std=c++11 -fexceptions -frtti")
+endif()
 # ------------------------------------------------------------------------------
-set(SNAPKIT_C_CXX_FLAGS_DEBUG "-DSNAPKIT_DEBUG")
-set(SNAPKIT_C_CXX_FLAGS_RELEASE "-DNDEBUG")
-set(SNAPKIT_C_CXX_FLAGS "-fno-asm -fno-builtin")
-set(SNAPKIT_C_FLAGS "${SNAPKIT_C_CXX_FLAGS} -std=c99")
-set(SNAPKIT_CXX_FLAGS "${SNAPKIT_C_CXX_FLAGS} -std=c++11 -fexceptions -frtti")
+if (CMAKE_COMPILER_IS_GNUCC)                    # GCC  =========================
+
+elseif(CMAKE_C_COMPILER_ID STREQUAL "Clang")    # Clang  =======================
+
+elseif(CMAKE_C_COMPILER_ID STREQUAL "Intel")    # Intel  =======================
+  message(FATAL_ERROR "Intel is not yet supported.")
+elseif(CMAKE_C_COMPILER_ID STREQUAL "MSVC")     # MSVC  ========================
+  message(FATAL_ERROR "MSVC is not yet supported.")
+endif()
+# ------------------------------------------------------------------------------
+set(SNAPKIT_USER_C_CXX_FLAGS_DEBUG "${SNAPKIT_C_CXX_FLAGS_DEBUG}" CACHE STRING "")
+set(SNAPKIT_USER_C_CXX_FLAGS_RELEASE "${SNAPKIT_C_CXX_FLAGS_RELEASE}" CACHE STRING "")
+set(SNAPKIT_USER_C_FLAGS "${SNAPKIT_C_FLAGS}" CACHE STRING "")
+set(SNAPKIT_USER_CXX_FLAGS "${SNAPKIT_CXX_FLAGS}" CACHE STRING "")
 # ------------------------------------------------------------------------------
 if    ("None" STREQUAL CMAKE_BUILD_TYPE OR NOT CMAKE_BUILD_TYPE)
 elseif("Debug" STREQUAL CMAKE_BUILD_TYPE OR "RelWithDebInfo" STREQUAL CMAKE_BUILD_TYPE)
-  set(SNAPKIT_C_FLAGS "${SNAPKIT_C_CXX_FLAGS_DEBUG} ${SNAPKIT_C_FLAGS}")
-  set(SNAPKIT_CXX_FLAGS "${SNAPKIT_C_CXX_FLAGS_DEBUG} ${SNAPKIT_CXX_FLAGS}")
+  set(SNAPKIT_C_FLAGS "${SNAPKIT_USER_C_CXX_FLAGS_DEBUG} ${SNAPKIT_USER_C_FLAGS}")
+  set(SNAPKIT_CXX_FLAGS "${SNAPKIT_USER_C_CXX_FLAGS_DEBUG} ${SNAPKIT_USER_CXX_FLAGS}")
 elseif("Release" STREQUAL CMAKE_BUILD_TYPE OR "MinSizeRel" STREQUAL CMAKE_BUILD_TYPE)
-  set(SNAPKIT_C_FLAGS "${SNAPKIT_C_CXX_FLAGS_RELEASE} ${SNAPKIT_C_FLAGS}")
-  set(SNAPKIT_CXX_FLAGS "${SNAPKIT_C_CXX_FLAGS_RELEASE} ${SNAPKIT_CXX_FLAGS}")
+  set(SNAPKIT_C_FLAGS "${SNAPKIT_USER_C_CXX_FLAGS_RELEASE} ${SNAPKIT_USER_C_FLAGS}")
+  set(SNAPKIT_CXX_FLAGS "${SNAPKIT_USER_C_CXX_FLAGS_RELEASE} ${SNAPKIT_USER_CXX_FLAGS}")
 endif()
 # ##############################################################################
 # root  ========================================================================

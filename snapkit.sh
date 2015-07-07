@@ -14,8 +14,10 @@ snapkit_(){
     local TARGET_UPPER=`echo ${TARGET} | tr [a-z] [A-Z]`
     # --------------------------------------------------------------------------
     echo create ${1}
-    cp -r ${HOME}/projects/tools/snapkit/trunk ${TARGET}/trunk
-    cd ${TARGET}/trunk
+    mkdir -p ${CURRENT_DIR}/${TARGET}
+    cp -r ${HOME}/projects/tools/snapkit/trunk ${CURRENT_DIR}/${TARGET}/trunk
+    cd ${CURRENT_DIR}/${TARGET}/trunk
+    rm -r ./.hg
     replace.sh snapkit ${TARGET_LOWER}
     replace.sh SNAPKIT ${TARGET_UPPER}
     mv snapkit.pc.in ${TARGET_LOWER}.pc.in

@@ -152,7 +152,7 @@ endif()
 # libraries ====================================================================
 # boost ------------------------------------------------------------------------
 set(Boost_USE_MULTITHREADED ON)
-find_package(Boost 1.55.0 REQUIRED COMPONENTS)
+find_package(Boost 1.56.0 REQUIRED COMPONENTS)
 # ltdl -------------------------------------------------------------------------
 find_path(LTDL_INCLUDE_DIR ltdl.h)
 find_library(LTDL_LIBRARIES NAMES ltdl)

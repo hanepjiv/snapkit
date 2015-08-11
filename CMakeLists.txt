@@ -30,7 +30,10 @@ include(FindPkgConfig)
 include(FindThreads)
 include(CCxxFlags)
 # ------------------------------------------------------------------------------
-set(SNAPKIT_PACKAGE "snapkit")
+set(SNAPKIT_PACKAGE     "snapkit")
+set(SNAPKIT_BUGREPORT     "hanepjiv <hanepjiv@gmail.com>")
+set(SNAPKIT_URL           "https://")
+# ------------------------------------------------------------------------------
 string(TOUPPER ${SNAPKIT_PACKAGE} SNAPKIT_PACKAGE_UPPER)
 # ##############################################################################
 # version ======================================================================
@@ -192,7 +195,7 @@ list(REMOVE_ITEM SNAPKIT_LIBRARIES "")
 # ##############################################################################
 # extra ========================================================================
 # ------------------------------------------------------------------------------
-configure_file(${abs_top_srcdir}/config.h.in config.h @ONLY)
+configure_file(${abs_top_srcdir}/config.h.cmake config.h @ONLY)
 configure_file(${abs_top_srcdir}/snapkit.pc.in snapkit.pc @ONLY)
 configure_file(${abs_top_srcdir}/Doxyfile.in Doxyfile @ONLY)
 # ##############################################################################

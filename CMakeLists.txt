@@ -31,16 +31,16 @@ include(FindThreads)
 include(CCxxFlags)
 # ------------------------------------------------------------------------------
 set(SNAPKIT_PACKAGE     "snapkit")
-set(SNAPKIT_BUGREPORT     "hanepjiv <hanepjiv@gmail.com>")
-set(SNAPKIT_URL           "https://")
+set(SNAPKIT_BUGREPORT   "hanepjiv <hanepjiv@gmail.com>")
+set(SNAPKIT_URL         "https://")
 # ------------------------------------------------------------------------------
 string(TOUPPER ${SNAPKIT_PACKAGE} SNAPKIT_PACKAGE_UPPER)
 # ##############################################################################
 # version ======================================================================
 # ------------------------------------------------------------------------------
-set(SNAPKIT_CURRENT  "0")
-set(SNAPKIT_REVISION "0")
-set(SNAPKIT_AGE    "0")
+set(SNAPKIT_CURRENT     "0")
+set(SNAPKIT_REVISION    "0")
+set(SNAPKIT_AGE         "0")
 # ------------------------------------------------------------------------------
 if(${SNAPKIT_CURRENT} LESS ${SNAPKIT_AGE})
   message(FATAL_ERROR

@@ -55,7 +55,7 @@ if(SNAPKIT_ENABLE_TEST)
   endif()
   # environment  ---------------------------------------------------------------
   set(TEST_ENV_ "${TEST_ENV}")
-  set(TEST_ENV_ "${TEST_ENV_};SRCDIR=${abs_top_srcdir}/test")
+  set(TEST_ENV_ "${TEST_ENV_};SRCDIR=${abs_top_srcdir}/example")
   set(TEST_ENV_ "${TEST_ENV_};BUILDDIR=${CMAKE_CURRENT_BINARY_DIR}")
   set_tests_properties(${SNAPKIT_TEST_TEST_EXE}
     PROPERTIES ENVIRONMENT "${TEST_ENV_}")

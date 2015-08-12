@@ -17,7 +17,7 @@ snapkit_(){
     mkdir -p ${CURRENT_DIR}/${TARGET}
     cp -r ${HOME}/projects/tools/snapkit/trunk ${CURRENT_DIR}/${TARGET}/trunk
     cd ${CURRENT_DIR}/${TARGET}/trunk
-    rm -r ./.hg
+    rm -r ./.hg ./snapkit.sh
     replace.sh snapkit ${TARGET_LOWER}
     replace.sh SNAPKIT ${TARGET_UPPER}
     mv snapkit.pc.in ${TARGET_LOWER}.pc.in

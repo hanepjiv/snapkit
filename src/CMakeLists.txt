@@ -43,7 +43,7 @@ target_link_libraries(snapkit
 set_target_properties(snapkit
   PROPERTIES
   OUTPUT_NAME snapkit
-  VERSION ${SNAPKIT_RELEASE}
+  VERSION ${SNAPKIT_VERSION}
   SOVERSION ${SNAPKIT_SOVERSION}
   COMPILE_FLAGS "-DSNAPKIT_EXPORTS ${SNAPKIT_CXX_FLAGS}"
   )

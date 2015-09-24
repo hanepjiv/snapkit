@@ -21,35 +21,44 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 # ##############################################################################
-# snapkit  ====================================================================
+# CMake  =======================================================================
 # ------------------------------------------------------------------------------
 cmake_minimum_required(VERSION 3.2)
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
-  "${CMAKE_CURRENT_SOURCE_DIR}/Modules/")
-include(FindPkgConfig)
-include(FindThreads)
-include(CCxxFlags)
+set(CMAKE_MODULE_PATH
+  ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/Modules/")
+# ##############################################################################
+# snapkit  ====================================================================
 # ------------------------------------------------------------------------------
 set(SNAPKIT_PACKAGE     "snapkit")
-set(SNAPKIT_BUGREPORT   "hanepjiv <hanepjiv@gmail.com>")
-set(SNAPKIT_URL         "https://")
-# ------------------------------------------------------------------------------
-string(TOUPPER ${SNAPKIT_PACKAGE} SNAPKIT_PACKAGE_UPPER)
-# ##############################################################################
-# version ======================================================================
-# ------------------------------------------------------------------------------
 set(SNAPKIT_CURRENT     "0")
 set(SNAPKIT_REVISION    "0")
 set(SNAPKIT_AGE         "0")
+set(SNAPKIT_BUGREPORT   "hanepjiv <hanepjiv@gmail.com>")
+set(SNAPKIT_URL         "https://")
 # ------------------------------------------------------------------------------
 if(${SNAPKIT_CURRENT} LESS ${SNAPKIT_AGE})
   message(FATAL_ERROR
     "SNAPKIT_AGE `${SNAPKIT_AGE}' is greater than the current interface number `${SNAPKIT_CURRENT}'.")
 endif()
-math(EXPR SNAPKIT_MAJOR "${SNAPKIT_CURRENT}-${SNAPKIT_AGE}")
 # ------------------------------------------------------------------------------
-set(SNAPKIT_RELEASE "${SNAPKIT_MAJOR}.${SNAPKIT_AGE}.${SNAPKIT_REVISION}")
+string(TOUPPER ${SNAPKIT_PACKAGE} SNAPKIT_PACKAGE_UPPER)
+math(EXPR SNAPKIT_MAJOR "${SNAPKIT_CURRENT}-${SNAPKIT_AGE}")
+set(SNAPKIT_VERSION "${SNAPKIT_MAJOR}.${SNAPKIT_AGE}.${SNAPKIT_REVISION}")
 set(SNAPKIT_SOVERSION "${SNAPKIT_MAJOR}")
+# ------------------------------------------------------------------------------
+project(${SNAPKIT_PACKAGE}
+  VERSION ${SNAPKIT_VERSION}
+  LANGUAGES C CXX)
+# ##############################################################################
+# include  =====================================================================
+# ------------------------------------------------------------------------------
+include(FindPkgConfig)
+include(FindThreads)
+include(CCxxFlags)
+# ##############################################################################
+# options  =====================================================================
+# ------------------------------------------------------------------------------
+option(SNAPKIT_ENABLE_TEST "Test feature." OFF)
 # ##############################################################################
 # flags  =======================================================================
 if (CMAKE_COMPILER_IS_GNUCC OR
@@ -152,11 +161,11 @@ if (NOT (CMAKE_C_COMPILER_ID STREQUAL CMAKE_CXX_COMPILER_ID))
   message(FATAL_ERROR "Requires C_COMPILER(${CMAKE_C_COMPILER_ID}) == CXX_COMPILER(${CMAKE_CXX_COMPILER_ID})")
 endif()
 # ##############################################################################
-# libraries ====================================================================
-# boost ------------------------------------------------------------------------
+# libraries  ===================================================================
+# boost  -----------------------------------------------------------------------
 set(Boost_USE_MULTITHREADED ON)
 find_package(Boost 1.56.0 REQUIRED COMPONENTS)
-# ltdl -------------------------------------------------------------------------
+# ltdl  ------------------------------------------------------------------------
 find_path(LTDL_INCLUDE_DIR ltdl.h)
 find_library(LTDL_LIBRARIES NAMES ltdl)
 # Thread  ----------------------------------------------------------------------
@@ -193,13 +202,13 @@ list(APPEND SNAPKIT_LIBRARIES ${CMAKE_DL_LIBS})
 list(REMOVE_DUPLICATES SNAPKIT_LIBRARIES)
 list(REMOVE_ITEM SNAPKIT_LIBRARIES "")
 # ##############################################################################
-# extra ========================================================================
+# extra  =======================================================================
 # ------------------------------------------------------------------------------
 configure_file(${abs_top_srcdir}/config.h.cmake config.h @ONLY)
 configure_file(${abs_top_srcdir}/snapkit.pc.in snapkit.pc @ONLY)
 configure_file(${abs_top_srcdir}/Doxyfile.in Doxyfile @ONLY)
 # ##############################################################################
-# for uninstall ================================================================
+# uninstall  ===================================================================
 # ------------------------------------------------------------------------------
 configure_file(
   ${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in cmake_uninstall.cmake
@@ -209,15 +218,14 @@ add_custom_target(uninstall
   ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake
   )
 # ##############################################################################
-# pkgconfig ====================================================================
+# pkgconfig  ===================================================================
 # ------------------------------------------------------------------------------
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/snapkit.pc
   DESTINATION lib/pkgconfig)
 # ##############################################################################
-# test =========================================================================
+# test  ========================================================================
 # ------------------------------------------------------------------------------
-option(SNAPKIT_ENABLE_TEST "Test feature." OFF)
 if(SNAPKIT_ENABLE_TEST)
   # ============================================================================
   # ----------------------------------------------------------------------------
@@ -265,7 +273,7 @@ if(SNAPKIT_ENABLE_TEST)
   list(APPEND TEST_ENV "CPPLINT=${CPPLINT} ${CPPLINT_FLAGS}")
 endif()
 # ##############################################################################
-# subdirectory =================================================================
+# subdirectory  ================================================================
 # ------------------------------------------------------------------------------
 add_subdirectory(include)
 add_subdirectory(src)

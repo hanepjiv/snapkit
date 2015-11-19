@@ -75,7 +75,7 @@ if(SNAPKIT_ENABLE_TEST)
     list(APPEND SNAPKIT_SRC_TEST_EXE splint-src)
   endif()
   # cpplint  -------------------------------------------------------------------
-  if(PYTHON2)
+  if(PYTHON)
     add_test(cpplint-src ${CPPLINT_SH})
     list(APPEND SNAPKIT_SRC_TEST_EXE cpplint-src)
   endif()

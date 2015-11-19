@@ -49,7 +49,7 @@ if(SNAPKIT_ENABLE_TEST)
     list(APPEND SNAPKIT_TEST_TEST_EXE splint-example)
   endif()
   # cpplint  -------------------------------------------------------------------
-  if(PYTHON2)
+  if(PYTHON)
     add_test(cpplint-example ${CPPLINT_SH})
     list(APPEND SNAPKIT_TEST_TEST_EXE cpplint-example)
   endif()

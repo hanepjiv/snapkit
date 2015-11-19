@@ -244,8 +244,7 @@ if(SNAPKIT_ENABLE_TEST)
   foreach(loop_var IN LISTS SNAPKIT_INCLUDE_DIRS)
     set(SPLINT_FLAGS "${SPLINT_FLAGS} -I ${loop_var}")
   endforeach()
-  set(SPLINT_SH /bin/env sh ${CMAKE_CURRENT_BINARY_DIR}/tools/et-splint/splint.sh
-   )
+  set(SPLINT_SH /bin/env sh ${CMAKE_CURRENT_BINARY_DIR}/tools/et-splint/splint.sh)
   # cpplint  -------------------------------------------------------------------
   find_program(PYTHON python)
   if(NOT PYTHON)
@@ -254,11 +253,9 @@ if(SNAPKIT_ENABLE_TEST)
   message(STATUS "${PYTHON}")
   configure_file(${abs_top_srcdir}/tools/et-cpplint/cpplint.sh.in
     tools/et-cpplint/cpplint.sh @ONLY)
-  set(CPPLINT "python ${abs_top_srcdir}/tools/et-cpplint/cpplint.py"
-    )
+  set(CPPLINT "python ${abs_top_srcdir}/tools/et-cpplint/cpplint.py")
   set(CPPLINT_FLAGS "")
-  set(CPPLINT_SH /bin/env sh ${CMAKE_CURRENT_BINARY_DIR}/tools/et-cpplint/cpplint.sh
-   )
+  set(CPPLINT_SH /bin/env sh ${CMAKE_CURRENT_BINARY_DIR}/tools/et-cpplint/cpplint.sh)
   # LD_LIBRARY_PATH  -----------------------------------------------------------
   set(LD_LIBRARY_PATH "")
   foreach(loop_var IN LISTS SNAPKIT_LIBRARY_DIRS)

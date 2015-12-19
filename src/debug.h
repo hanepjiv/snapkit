@@ -8,7 +8,7 @@
  *
  *  @author hanepjiv <hanepjiv@gmail.com>
  *  @since 2015/05/29
- *  @date 2015/08/08
+ *  @date 2015/12/19
  */
 
 
@@ -321,4 +321,4 @@
 #endif  /* SNAPKIT_DEBUG  ////////////////////////////////////////////////// */
 
 
-#endif  /* SNAPKIT!_DEBUG_H_ */
+#endif  /* SNAPKIT_DEBUG_H_ */

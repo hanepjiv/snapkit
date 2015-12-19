@@ -28,8 +28,7 @@ link_directories(${SNAPKIT_LIBRARY_DIRS})
 # ==============================================================================
 # examples ---------------------------------------------------------------------
 set(example00_SRCS
-  ${abs_top_srcdir}/include/snapkit/debug.h
-
+  ${abs_top_srcdir}/src/debug.h
   ${abs_top_srcdir}/example/example00.cc
   )
 add_executable(example00 ${example00_SRCS})

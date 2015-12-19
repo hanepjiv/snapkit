@@ -42,8 +42,7 @@ if(SNAPKIT_ENABLE_TEST)
   endif()
   # ----------------------------------------------------------------------------
   set(test00_SRCS
-    ${abs_top_srcdir}/include/snapkit/debug.h
-
+    ${abs_top_srcdir}/src/debug.h
     ${abs_top_srcdir}/test/test00.cc
     )
   add_executable(test00 ${test00_SRCS})

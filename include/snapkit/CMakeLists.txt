@@ -46,21 +46,21 @@ install(FILES
 # tests  -----------------------------------------------------------------------
 if(SNAPKIT_ENABLE_TEST)
   # ----------------------------------------------------------------------------
-  set(SNAPKIT_SRC_TEST_EXE)
+  set(SNAPKIT_INCLUDE_SNAPKIT_TEST_EXE)
   # splint  --------------------------------------------------------------------
   if(SPLINT)
     add_test(splint-include-snapkit ${SPLINT_SH})
-    list(APPEND SNAPKIT_SRC_TEST_EXE splint-include-snapkit)
+    list(APPEND SNAPKIT_INCLUDE_SNAPKIT_TEST_EXE splint-include-snapkit)
   endif()
   # cpplint  -------------------------------------------------------------------
   if(PYTHON)
     add_test(cpplint-include-snapkit ${CPPLINT_SH})
-    list(APPEND SNAPKIT_SRC_TEST_EXE cpplint-include-snapkit)
+    list(APPEND SNAPKIT_INCLUDE_SNAPKIT_TEST_EXE cpplint-include-snapkit)
   endif()
   # environment  ---------------------------------------------------------------
   set(TEST_ENV_ "${TEST_ENV}")
   list(APPEND TEST_ENV_ "SRCDIR=${abs_top_srcdir}/include/snapkit")
   list(APPEND TEST_ENV_ "BUILDDIR=${CMAKE_CURRENT_BINARY_DIR}")
-  set_tests_properties(${SNAPKIT_SRC_TEST_EXE}
+  set_tests_properties(${SNAPKIT_INCLUDE_SNAPKIT_TEST_EXE}
     PROPERTIES ENVIRONMENT "${TEST_ENV_}")
 endif()

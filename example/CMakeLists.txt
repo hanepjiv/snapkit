@@ -42,21 +42,21 @@ set_target_properties(example00
 # tests ------------------------------------------------------------------------
 if(SNAPKIT_ENABLE_TEST)
   # ----------------------------------------------------------------------------
-  set(SNAPKIT_TEST_TEST_EXE)
+  set(SNAPKIT_EXAMPLE_TEST_EXE)
   # splint  --------------------------------------------------------------------
   if(SPLINT)
     add_test(splint-example ${SPLINT_SH})
-    list(APPEND SNAPKIT_TEST_TEST_EXE splint-example)
+    list(APPEND SNAPKIT_EXAMPLE_TEST_EXE splint-example)
   endif()
   # cpplint  -------------------------------------------------------------------
   if(PYTHON)
     add_test(cpplint-example ${CPPLINT_SH})
-    list(APPEND SNAPKIT_TEST_TEST_EXE cpplint-example)
+    list(APPEND SNAPKIT_EXAMPLE_TEST_EXE cpplint-example)
   endif()
   # environment  ---------------------------------------------------------------
   set(TEST_ENV_ "${TEST_ENV}")
   set(TEST_ENV_ "${TEST_ENV_};SRCDIR=${abs_top_srcdir}/example")
   set(TEST_ENV_ "${TEST_ENV_};BUILDDIR=${CMAKE_CURRENT_BINARY_DIR}")
-  set_tests_properties(${SNAPKIT_TEST_TEST_EXE}
+  set_tests_properties(${SNAPKIT_EXAMPLE_TEST_EXE}
     PROPERTIES ENVIRONMENT "${TEST_ENV_}")
 endif()

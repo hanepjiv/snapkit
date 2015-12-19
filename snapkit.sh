@@ -18,8 +18,8 @@ snapkit_(){
     cp -r ${HOME}/projects/tools/snapkit/trunk ${CURRENT_DIR}/${TARGET}/trunk
     cd ${CURRENT_DIR}/${TARGET}/trunk
     rm -r ./.hg ./snapkit.sh
-    replace.sh snapkit ${TARGET_LOWER}
-    replace.sh SNAPKIT ${TARGET_UPPER}
+    ./replace.sh snapkit ${TARGET_LOWER}
+    ./replace.sh SNAPKIT ${TARGET_UPPER}
     mv snapkit.pc.in ${TARGET_LOWER}.pc.in
     mv include/snapkit include/${TARGET_LOWER}
     mv src/snapkit.cc src/${TARGET_LOWER}.cc

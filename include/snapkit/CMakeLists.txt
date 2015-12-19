@@ -29,7 +29,7 @@
 set(SNAPKIT_INCLUDE_SNAPKIT_SRC "${abs_top_srcdir}/include/snapkit")
 set(SNAPKIT_INCLUDE_SNAPKIT_DEST "include/snapkit")
 # ------------------------------------------------------------------------------
-set(snapkit_HEADERS
+set(SNAPKIT_HEADERS
   ${SNAPKIT_INCLUDE_SNAPKIT_SRC}/call.h
   ${SNAPKIT_INCLUDE_SNAPKIT_SRC}/declspec.h
   ${SNAPKIT_INCLUDE_SNAPKIT_SRC}/begin.h
@@ -40,7 +40,7 @@ set(snapkit_HEADERS
   )
 # ------------------------------------------------------------------------------
 install(FILES
-  ${snapkit_HEADERS}
+  ${SNAPKIT_HEADERS}
   DESTINATION ${SNAPKIT_INCLUDE_SNAPKIT_DEST})
 # ==============================================================================
 # tests  -----------------------------------------------------------------------

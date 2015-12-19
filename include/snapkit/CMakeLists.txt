@@ -33,10 +33,6 @@ set(SNAPKIT_HEADERS
   ${SNAPKIT_INCLUDE_SNAPKIT_SRC}/call.h
   ${SNAPKIT_INCLUDE_SNAPKIT_SRC}/declspec.h
   ${SNAPKIT_INCLUDE_SNAPKIT_SRC}/begin.h
-
-  ${SNAPKIT_INCLUDE_SNAPKIT_SRC}/debug.h
-
-  # here
   )
 # ------------------------------------------------------------------------------
 install(FILES

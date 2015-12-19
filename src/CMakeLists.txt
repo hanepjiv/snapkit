@@ -32,7 +32,7 @@ set(SNAPKIT_SOURCES
   ${abs_top_srcdir}/include/snapkit/declspec.h
   ${abs_top_srcdir}/include/snapkit/begin.h
 
-  ${abs_top_srcdir}/include/snapkit/debug.h
+  ${abs_top_srcdir}/src/debug.h
 
   ${abs_top_srcdir}/src/snapkit.cc
   )

@@ -8,7 +8,7 @@
  *
  *  @author hanepjiv <hanepjiv@gmail.com>
  *  @since 2015/05/29
- *  @date 2015/12/19
+ *  @date 2015/12/27
  */
 
 
@@ -90,7 +90,7 @@
   do {                                                                  \
     USING_NAMESPACE_STD;                                                \
     fprintf(stderr, "%s(%i) : " d "\n", __FILE__, __LINE__);            \
-    fflush(stderr);                                                     \
+    (void)fflush(stderr);                                               \
   } while (0)
 # define SNAPKIT_TRACE_(d) SNAPKIT_TRACE__(d)
 # define SNAPKIT_TRACE(d) SNAPKIT_TRACE_(d)
@@ -153,7 +153,7 @@
     USING_NAMESPACE_STD;                                              \
     fprintf(stderr, "%s(%i) %s : " fmt "\n",                          \
             __FILE__, __LINE__, __func__, __VA_ARGS__);               \
-    fflush(stderr);                                                   \
+    (void)fflush(stderr);                                             \
   } while (0)
 #   define SNAPKIT_TRACEF_(fmt, ...) SNAPKIT_TRACEF__(fmt, __VA_ARGS__)
 #   define SNAPKIT_TRACEF(fmt, ...) SNAPKIT_TRACEF_(fmt, __VA_ARGS__)

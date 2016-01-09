@@ -1,7 +1,7 @@
 # ##############################################################################
 # The MIT License (MIT)
 #
-# Copyright (c) <2015> hanepjiv <hanepjiv@gmail.com>
+# Copyright (c) <2016> hanepjiv <hanepjiv@gmail.com>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -26,17 +26,12 @@
 
 # ==============================================================================
 # snapkit  --------------------------------------------------------------------
-set(SNAPKIT_INCLUDE_SNAPKIT_SRC "${abs_top_srcdir}/include/snapkit")
-set(SNAPKIT_INCLUDE_SNAPKIT_DEST "include/snapkit")
-# ------------------------------------------------------------------------------
-set(SNAPKIT_HEADERS
-  ${SNAPKIT_INCLUDE_SNAPKIT_SRC}/call.h
-  ${SNAPKIT_INCLUDE_SNAPKIT_SRC}/declspec.h
-  ${SNAPKIT_INCLUDE_SNAPKIT_SRC}/begin.h
-  )
-# ------------------------------------------------------------------------------
+file(RELATIVE_PATH SNAPKIT_INCLUDE_SNAPKIT_DEST
+  ${abs_top_srcdir} ${CMAKE_CURRENT_SOURCE_DIR})
 install(FILES
-  ${SNAPKIT_HEADERS}
+  call.h
+  declspec.h
+  begin.h
   DESTINATION ${SNAPKIT_INCLUDE_SNAPKIT_DEST})
 # ==============================================================================
 # tests  -----------------------------------------------------------------------
@@ -45,17 +40,17 @@ if(SNAPKIT_ENABLE_TEST)
   set(SNAPKIT_INCLUDE_SNAPKIT_TEST_EXE)
   # splint  --------------------------------------------------------------------
   if(SPLINT)
-    add_test(splint-include-snapkit ${SPLINT_SH})
-    list(APPEND SNAPKIT_INCLUDE_SNAPKIT_TEST_EXE splint-include-snapkit)
+    add_test(include_snapkit-splint ${SPLINT_SH})
+    list(APPEND SNAPKIT_INCLUDE_SNAPKIT_TEST_EXE include_snapkit-splint)
   endif()
   # cpplint  -------------------------------------------------------------------
   if(PYTHON)
-    add_test(cpplint-include-snapkit ${CPPLINT_SH})
-    list(APPEND SNAPKIT_INCLUDE_SNAPKIT_TEST_EXE cpplint-include-snapkit)
+    add_test(include_snapkit-cpplint ${CPPLINT_SH})
+    list(APPEND SNAPKIT_INCLUDE_SNAPKIT_TEST_EXE include_snapkit-cpplint)
   endif()
   # environment  ---------------------------------------------------------------
   set(TEST_ENV_ "${TEST_ENV}")
-  list(APPEND TEST_ENV_ "SRCDIR=${abs_top_srcdir}/include/snapkit")
+  list(APPEND TEST_ENV_ "SRCDIR=${CMAKE_CURRENT_SOURCE_DIR}")
   list(APPEND TEST_ENV_ "BUILDDIR=${CMAKE_CURRENT_BINARY_DIR}")
   set_tests_properties(${SNAPKIT_INCLUDE_SNAPKIT_TEST_EXE}
     PROPERTIES ENVIRONMENT "${TEST_ENV_}")

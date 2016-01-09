@@ -13,16 +13,6 @@ replace_(){
         exit 1
     fi
 
-    echo "You sure you want to 'replace_ \"${1}\" \"${2}\"' ?"
-    select YN in yes no; do
-        case ${YN} in
-            yes)                                break   ;;
-            no)                                 exit 0  ;;
-            *)  echo "invalid YN ${YN}";        exit 1  ;;
-        esac
-    done
-    echo
-
     find ${CURRENT_DIR} -type f \
          \( -name          \*.in        -o -name    \*.sh \
          -o -name CMakeLists.txt        -o -name \*.cmake \

@@ -1,7 +1,7 @@
 # ##############################################################################
 # The MIT License (MIT)
 #
-# Copyright (c) <2015> hanepjiv <hanepjiv@gmail.com>
+# Copyright (c) <2016> hanepjiv <hanepjiv@gmail.com>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -28,8 +28,7 @@ link_directories(${SNAPKIT_LIBRARY_DIRS})
 # ==============================================================================
 # examples ---------------------------------------------------------------------
 set(example00_SRCS
-  ${abs_top_srcdir}/src/debug.h
-  ${abs_top_srcdir}/example/example00.cc
+  example00.cc
   )
 add_executable(example00 ${example00_SRCS})
 target_link_libraries(example00 ${SNAPKIT_LIBRARIES})
@@ -44,18 +43,18 @@ if(SNAPKIT_ENABLE_TEST)
   set(SNAPKIT_EXAMPLE_TEST_EXE)
   # splint  --------------------------------------------------------------------
   if(SPLINT)
-    add_test(splint-example ${SPLINT_SH})
-    list(APPEND SNAPKIT_EXAMPLE_TEST_EXE splint-example)
+    add_test(example-splint ${SPLINT_SH})
+    list(APPEND SNAPKIT_EXAMPLE_TEST_EXE example-splint)
   endif()
   # cpplint  -------------------------------------------------------------------
   if(PYTHON)
-    add_test(cpplint-example ${CPPLINT_SH})
-    list(APPEND SNAPKIT_EXAMPLE_TEST_EXE cpplint-example)
+    add_test(example-cpplint ${CPPLINT_SH})
+    list(APPEND SNAPKIT_EXAMPLE_TEST_EXE example-cpplint)
   endif()
   # environment  ---------------------------------------------------------------
   set(TEST_ENV_ "${TEST_ENV}")
-  set(TEST_ENV_ "${TEST_ENV_};SRCDIR=${abs_top_srcdir}/example")
-  set(TEST_ENV_ "${TEST_ENV_};BUILDDIR=${CMAKE_CURRENT_BINARY_DIR}")
+  list(APPEND TEST_ENV_ "SRCDIR=${CMAKE_CURRENT_SOURCE_DIR}")
+  list(APPEND TEST_ENV_ "BUILDDIR=${CMAKE_CURRENT_BINARY_DIR}")
   set_tests_properties(${SNAPKIT_EXAMPLE_TEST_EXE}
     PROPERTIES ENVIRONMENT "${TEST_ENV_}")
 endif()

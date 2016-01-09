@@ -1,7 +1,7 @@
 # ##############################################################################
 # The MIT License (MIT)
 #
-# Copyright (c) <2015> hanepjiv <hanepjiv@gmail.com>
+# Copyright (c) <2016> hanepjiv <hanepjiv@gmail.com>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -61,13 +61,19 @@ include(CCxxFlags)
 option(SNAPKIT_ENABLE_TEST "Test feature." OFF)
 # ##############################################################################
 # flags  =======================================================================
+# ------------------------------------------------------------------------------
+set(SNAPKIT_C_CXX_FLAGS_DEBUG           "-DSNAPKIT_DEBUG")
+set(SNAPKIT_C_CXX_FLAGS_RELWITHDEBINFO  "-DSNAPKIT_DEBUG")
+set(SNAPKIT_C_CXX_FLAGS_RELEASE         "-DNDEBUG")
+set(SNAPKIT_C_CXX_FLAGS_MINSIZEREL      "-DNDEBUG")
+# ------------------------------------------------------------------------------
 if (CMAKE_COMPILER_IS_GNUCC OR
     CMAKE_C_COMPILER_ID STREQUAL "Clang")       # GCC or Clang  ================
   set(SNAPKIT_C_CXX_FLAGS                "-fno-asm -fno-builtin")
-  set(SNAPKIT_C_CXX_FLAGS_DEBUG          "-DSNAPKIT_DEBUG")
-  set(SNAPKIT_C_CXX_FLAGS_RELWITHDEBINFO "-DSNAPKIT_DEBUG")
-  set(SNAPKIT_C_CXX_FLAGS_RELEASE        "-DNDEBUG")
-  set(SNAPKIT_C_CXX_FLAGS_MINSIZEREL     "-DNDEBUG")
+  set(SNAPKIT_C_CXX_FLAGS_DEBUG          "${SNAPKIT_C_CXX_FLAGS_DEBUG}")
+  set(SNAPKIT_C_CXX_FLAGS_RELWITHDEBINFO "${SNAPKIT_C_CXX_FLAGS_RELWITHDEBINFO}")
+  set(SNAPKIT_C_CXX_FLAGS_RELEASE        "${SNAPKIT_C_CXX_FLAGS_RELEASE}")
+  set(SNAPKIT_C_CXX_FLAGS_MINSIZEREL     "${SNAPKIT_C_CXX_FLAGS_MINSIZEREL}")
   set(SNAPKIT_C_FLAGS                    "-std=c99")
   set(SNAPKIT_C_FLAGS_DEBUG              "")
   set(SNAPKIT_C_FLAGS_RELWITHDEBINFO     "")
@@ -87,10 +93,10 @@ elseif(CMAKE_C_COMPILER_ID STREQUAL "Clang")    # Clang  =======================
 elseif(CMAKE_C_COMPILER_ID STREQUAL "Intel")    # Intel  =======================
   message(FATAL_ERROR "Intel is not yet supported.")
   set(SNAPKIT_C_CXX_FLAGS                "TODO")
-  set(SNAPKIT_C_CXX_FLAGS_DEBUG          "-DSNAPKIT_DEBUG TODO")
-  set(SNAPKIT_C_CXX_FLAGS_RELWITHDEBINFO "-DSNAPKIT_DEBUG TODO")
-  set(SNAPKIT_C_CXX_FLAGS_RELEASE        "-DNDEBUG TODO")
-  set(SNAPKIT_C_CXX_FLAGS_MINSIZEREL     "-DNDEBUG TODO")
+  set(SNAPKIT_C_CXX_FLAGS_DEBUG          "${SNAPKIT_C_CXX_FLAGS_DEBUG TODO}")
+  set(SNAPKIT_C_CXX_FLAGS_RELWITHDEBINFO "${SNAPKIT_C_CXX_FLAGS_RELWITHDEBINFO TODO}")
+  set(SNAPKIT_C_CXX_FLAGS_RELEASE        "${SNAPKIT_C_CXX_FLAGS_RELEASE TODO}")
+  set(SNAPKIT_C_CXX_FLAGS_MINSIZEREL     "${SNAPKIT_C_CXX_FLAGS_MINSIZEREL TODO}")
   set(SNAPKIT_C_FLAGS                    "TODO")
   set(SNAPKIT_C_FLAGS_DEBUG              "TODO")
   set(SNAPKIT_C_FLAGS_RELWITHDEBINFO     "TODO")
@@ -104,10 +110,10 @@ elseif(CMAKE_C_COMPILER_ID STREQUAL "Intel")    # Intel  =======================
 elseif(CMAKE_C_COMPILER_ID STREQUAL "MSVC")     # MSVC  ========================
   message(FATAL_ERROR "MSVC is not yet supported.")
   set(SNAPKIT_C_CXX_FLAGS                "TODO")
-  set(SNAPKIT_C_CXX_FLAGS_DEBUG          "-DSNAPKIT_DEBUG TODO")
-  set(SNAPKIT_C_CXX_FLAGS_RELWITHDEBINFO "-DSNAPKIT_DEBUG TODO")
-  set(SNAPKIT_C_CXX_FLAGS_RELEASE        "-DNDEBUG TODO")
-  set(SNAPKIT_C_CXX_FLAGS_MINSIZEREL     "-DNDEBUG TODO")
+  set(SNAPKIT_C_CXX_FLAGS_DEBUG          "${SNAPKIT_C_CXX_FLAGS_DEBUG TODO}")
+  set(SNAPKIT_C_CXX_FLAGS_RELWITHDEBINFO "${SNAPKIT_C_CXX_FLAGS_RELWITHDEBINFO TODO}")
+  set(SNAPKIT_C_CXX_FLAGS_RELEASE        "${SNAPKIT_C_CXX_FLAGS_RELEASE TODO}")
+  set(SNAPKIT_C_CXX_FLAGS_MINSIZEREL     "${SNAPKIT_C_CXX_FLAGS_MINSIZEREL TODO}")
   set(SNAPKIT_C_FLAGS                    "TODO")
   set(SNAPKIT_C_FLAGS_DEBUG              "TODO")
   set(SNAPKIT_C_FLAGS_RELWITHDEBINFO     "TODO")

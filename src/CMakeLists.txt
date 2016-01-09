@@ -1,7 +1,7 @@
 # ##############################################################################
 # The MIT License (MIT)
 #
-# Copyright (c) <2015> hanepjiv <hanepjiv@gmail.com>
+# Copyright (c) <2016> hanepjiv <hanepjiv@gmail.com>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -28,13 +28,7 @@ link_directories(${SNAPKIT_LIBRARY_DIRS})
 # ==============================================================================
 # snapkit  --------------------------------------------------------------------
 set(SNAPKIT_SOURCES
-  ${abs_top_srcdir}/include/snapkit/call.h
-  ${abs_top_srcdir}/include/snapkit/declspec.h
-  ${abs_top_srcdir}/include/snapkit/begin.h
-
-  ${abs_top_srcdir}/src/debug.h
-
-  ${abs_top_srcdir}/src/snapkit.cc
+  snapkit.cc
   )
 # ------------------------------------------------------------------------------
 add_library(snapkit SHARED ${SNAPKIT_SOURCES})
@@ -45,8 +39,7 @@ set_target_properties(snapkit
   OUTPUT_NAME snapkit
   VERSION ${SNAPKIT_VERSION}
   SOVERSION ${SNAPKIT_SOVERSION}
-  COMPILE_FLAGS "-DSNAPKIT_EXPORTS ${SNAPKIT_CXX_FLAGS}"
-  )
+  COMPILE_FLAGS "-DSNAPKIT_EXPORTS ${SNAPKIT_CXX_FLAGS}")
 # ------------------------------------------------------------------------------
 add_library(snapkit-static STATIC ${SNAPKIT_SOURCES})
 target_link_libraries(snapkit-static
@@ -54,16 +47,14 @@ target_link_libraries(snapkit-static
 set_target_properties(snapkit-static
   PROPERTIES
   OUTPUT_NAME snapkit
-  COMPILE_FLAGS "-DSNAPKIT_EXPORTS ${SNAPKIT_CXX_FLAGS}"
-  )
+  COMPILE_FLAGS "-DSNAPKIT_EXPORTS ${SNAPKIT_CXX_FLAGS}")
 # ------------------------------------------------------------------------------
 install(TARGETS
   snapkit
   snapkit-static
   RUNTIME DESTINATION bin
   LIBRARY DESTINATION lib
-  ARCHIVE DESTINATION lib
-  )
+  ARCHIVE DESTINATION lib)
 # ==============================================================================
 # tests  -----------------------------------------------------------------------
 if(SNAPKIT_ENABLE_TEST)
@@ -71,17 +62,17 @@ if(SNAPKIT_ENABLE_TEST)
   set(SNAPKIT_SRC_TEST_EXE)
   # splint  --------------------------------------------------------------------
   if(SPLINT)
-    add_test(splint-src ${SPLINT_SH})
-    list(APPEND SNAPKIT_SRC_TEST_EXE splint-src)
+    add_test(src-splint ${SPLINT_SH})
+    list(APPEND SNAPKIT_SRC_TEST_EXE src-splint)
   endif()
   # cpplint  -------------------------------------------------------------------
   if(PYTHON)
-    add_test(cpplint-src ${CPPLINT_SH})
-    list(APPEND SNAPKIT_SRC_TEST_EXE cpplint-src)
+    add_test(src-cpplint ${CPPLINT_SH})
+    list(APPEND SNAPKIT_SRC_TEST_EXE src-cpplint)
   endif()
   # environment  ---------------------------------------------------------------
   set(TEST_ENV_ "${TEST_ENV}")
-  list(APPEND TEST_ENV_ "SRCDIR=${abs_top_srcdir}/src")
+  list(APPEND TEST_ENV_ "SRCDIR=${CMAKE_CURRENT_SOURCE_DIR}")
   list(APPEND TEST_ENV_ "BUILDDIR=${CMAKE_CURRENT_BINARY_DIR}")
   set_tests_properties(${SNAPKIT_SRC_TEST_EXE}
     PROPERTIES ENVIRONMENT "${TEST_ENV_}")

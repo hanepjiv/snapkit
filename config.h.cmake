@@ -4,11 +4,11 @@
  *
  *  config.h.in
  *
- *  Copyright 2015 hanepjiv
+ *  Copyright 2016 hanepjiv
  *
  *  @author hanepjiv <hagumo@gmail.com>
- *  @since 2015/08/08
- *  @date 2015/09/25
+ *  @since 2016/01/09
+ *  @date 2016/01/09
  */
 
 

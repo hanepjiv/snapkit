@@ -4,11 +4,11 @@
  *
  *  declspec.h
  *
- *  Copyright 2015 hanepjiv
+ *  Copyright 2016 hanepjiv
  *
  *  @author hanepjiv <hanepjiv@gmail.com>
- *  @since 2015/05/24
- *  @date 2015/06/08
+ *  @since 2016/01/09
+ *  @date 2016/01/09
  */
 
 
@@ -16,7 +16,7 @@
 /*
   The MIT License (MIT)
 
-  Copyright (c) <2015> hanepjiv <hanepjiv@gmail.com>
+  Copyright (c) <2016> hanepjiv <hanepjiv@gmail.com>
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal

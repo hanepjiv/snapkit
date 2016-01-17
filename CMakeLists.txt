@@ -167,18 +167,6 @@ if (NOT (CMAKE_C_COMPILER_ID STREQUAL CMAKE_CXX_COMPILER_ID))
   message(FATAL_ERROR "Requires C_COMPILER(${CMAKE_C_COMPILER_ID}) == CXX_COMPILER(${CMAKE_CXX_COMPILER_ID})")
 endif()
 # ##############################################################################
-# libraries  ===================================================================
-# boost  -----------------------------------------------------------------------
-set(Boost_USE_MULTITHREADED ON)
-find_package(Boost 1.56.0 REQUIRED COMPONENTS)
-# ltdl  ------------------------------------------------------------------------
-find_path(LTDL_INCLUDE_DIR ltdl.h)
-find_library(LTDL_LIBRARIES NAMES ltdl)
-# Thread  ----------------------------------------------------------------------
-set(CMAKE_THREAD_PREFER_PTHREAD ON)
-find_package(Threads)
-set(SNAPKIT_THREAD_LIBS ${CMAKE_THREAD_LIBS_INIT})
-# ##############################################################################
 # dirs  ========================================================================
 # ------------------------------------------------------------------------------
 set(prefix ${CMAKE_INSTALL_PREFIX})
@@ -189,24 +177,41 @@ set(includedir "\${prefix}/include")
 set(SNAPKIT_INCLUDE_DIRS "")
 list(APPEND SNAPKIT_INCLUDE_DIRS ${CMAKE_CURRENT_BINARY_DIR})
 list(APPEND SNAPKIT_INCLUDE_DIRS ${abs_top_srcdir}/include)
-list(APPEND SNAPKIT_INCLUDE_DIRS ${Boost_INCLUDE_DIR})
-list(APPEND SNAPKIT_INCLUDE_DIRS ${LTDL_INCLUDE_DIR})
-list(REMOVE_DUPLICATES SNAPKIT_INCLUDE_DIRS)
-list(REMOVE_ITEM SNAPKIT_INCLUDE_DIRS "")
 # ------------------------------------------------------------------------------
 set(SNAPKIT_LIBRARY_DIRS "")
 list(APPEND SNAPKIT_LIBRARY_DIRS ${CMAKE_CURRENT_BINARY_DIR}/src)
-list(APPEND SNAPKIT_LIBRARY_DIRS ${Boost_LIBRARY_DIR})
-list(APPEND SNAPKIT_LIBRARY_DIRS ${LTDL_LIBRARY_DIR})
-list(REMOVE_DUPLICATES SNAPKIT_LIBRARY_DIRS)
-list(REMOVE_ITEM SNAPKIT_LIBRARY_DIRS "")
 # ------------------------------------------------------------------------------
 set(SNAPKIT_LIBRARIES "")
-list(APPEND SNAPKIT_LIBRARIES ${LTDL_LIBRARIES})
-list(APPEND SNAPKIT_LIBRARIES ${CMAKE_THREAD_LIBS_INIT})
-list(APPEND SNAPKIT_LIBRARIES ${CMAKE_DL_LIBS})
-list(REMOVE_DUPLICATES SNAPKIT_LIBRARIES)
-list(REMOVE_ITEM SNAPKIT_LIBRARIES "")
+# ##############################################################################
+# libraries  ===================================================================
+# boost  -----------------------------------------------------------------------
+set(Boost_USE_MULTITHREADED ON)
+find_package(Boost 1.56.0 REQUIRED COMPONENTS)
+list(APPEND SNAPKIT_INCLUDE_DIRS        ${Boost_INCLUDE_DIR})
+list(APPEND SNAPKIT_LIBRARY_DIRS        ${Boost_LIBRARY_DIR})
+# ltdl  ------------------------------------------------------------------------
+find_path(LTDL_INCLUDE_DIR ltdl.h)
+find_library(LTDL_LIBRARIES NAMES ltdl)
+list(APPEND SNAPKIT_INCLUDE_DIRS        ${LTDL_INCLUDE_DIR})
+list(APPEND SNAPKIT_LIBRARY_DIRS        ${LTDL_LIBRARY_DIR})
+list(APPEND SNAPKIT_LIBRARIES           ${LTDL_LIBRARIES})
+list(APPEND SNAPKIT_LIBRARIES           ${CMAKE_DL_LIBS})
+# Thread  ----------------------------------------------------------------------
+set(CMAKE_THREAD_PREFER_PTHREAD ON)
+find_package(Threads)
+set(SNAPKIT_THREAD_LIBS                 ${CMAKE_THREAD_LIBS_INIT})
+list(APPEND SNAPKIT_LIBRARIES           ${CMAKE_THREAD_LIBS_INIT})
+# ##############################################################################
+# dirs cleanup  ================================================================
+# ------------------------------------------------------------------------------
+list(REMOVE_DUPLICATES  SNAPKIT_INCLUDE_DIRS)
+list(REMOVE_ITEM        SNAPKIT_INCLUDE_DIRS "")
+# ------------------------------------------------------------------------------
+list(REMOVE_DUPLICATES  SNAPKIT_LIBRARY_DIRS)
+list(REMOVE_ITEM        SNAPKIT_LIBRARY_DIRS "")
+# ------------------------------------------------------------------------------
+list(REMOVE_DUPLICATES  SNAPKIT_LIBRARIES)
+list(REMOVE_ITEM        SNAPKIT_LIBRARIES "")
 # ##############################################################################
 # extra  =======================================================================
 # ------------------------------------------------------------------------------

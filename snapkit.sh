@@ -8,22 +8,40 @@ ROOT="$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)"
 
 # //////////////////////////////////////////////////////////////////////////////
 # ==============================================================================
+replace_(){
+    if [ ${#} -ne 2 ]; then
+        exit 1
+    fi
+
+    find ${CURRENT_DIR} -type f \
+         \( -name          \*.in        -o -name    \*.sh \
+         -o -name CMakeLists.txt        -o -name \*.cmake \
+         -o -name           \*.h        -o -name     \*.c \
+         -o -name          \*.hh        -o -name    \*.cc \
+         -o -name         \*.hpp        -o -name   \*.cpp \
+         -o -name       \*.cabal        -o -name    \*.hs \) \
+         -exec sed -i -E "s@${1}@${2}@g" {} \;
+}
+# ==============================================================================
 snapkit_(){
     local TARGET=${1}
     local TARGET_LOWER=`echo ${TARGET} | tr [A-Z] [a-z]`
     local TARGET_UPPER=`echo ${TARGET} | tr [a-z] [A-Z]`
     # --------------------------------------------------------------------------
-    echo create ${1}
-    mkdir -p ${CURRENT_DIR}/${TARGET}
-    cp -r ${HOME}/projects/tools/snapkit/trunk ${CURRENT_DIR}/${TARGET}/trunk
-    cd ${CURRENT_DIR}/${TARGET}/trunk
+    if [ -e ${TARGET} ] ; then
+        echo ${TARGET} already exists.
+        exit 1
+    fi
+    cp -r ${ROOT} ${TARGET}
+    cd ${TARGET}
     rm -r ./.hg ./snapkit.sh
-    ./replace.sh snapkit ${TARGET_LOWER}
-    ./replace.sh SNAPKIT ${TARGET_UPPER}
+    replace_ snapkit ${TARGET_LOWER}
+    replace_ SNAPKIT ${TARGET_UPPER}
     mv snapkit.pc.in ${TARGET_LOWER}.pc.in
     mv include/snapkit include/${TARGET_LOWER}
     mv src/snapkit.cc src/${TARGET_LOWER}.cc
     cd ${CURRENT_DIR}
+    echo create ${1}
 }
 
 # //////////////////////////////////////////////////////////////////////////////

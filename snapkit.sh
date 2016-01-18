@@ -13,12 +13,13 @@ replace_(){
         exit 1
     fi
     # --------------------------------------------------------------------------
-    find ${CURRENT_DIR} -type f \
+    find ./ -type f \
          \( -name          \*.in        -o -name    \*.sh \
          -o -name CMakeLists.txt        -o -name \*.cmake \
          -o -name           \*.h        -o -name     \*.c \
          -o -name          \*.hh        -o -name    \*.cc \
-         -o -name         \*.hpp        -o -name   \*.cpp \) \
+         -o -name         \*.hpp        -o -name   \*.cpp \
+         -o -name         .hgsub \) \
          -exec sed -i -E "s@${1}@${2}@g" {} \;
 }
 # ==============================================================================
@@ -34,7 +35,7 @@ snapkit_(){
     # --------------------------------------------------------------------------
     cp -r ${ROOT} ${TARGET}
     cd ${TARGET}
-    rm -r ./.hg ./snapkit.sh
+    rm -r .hg .hgsubstate snapkit.sh
     replace_ snapkit ${TARGET_LOWER}
     replace_ SNAPKIT ${TARGET_UPPER}
     mv snapkit.pc.in ${TARGET_LOWER}.pc.in

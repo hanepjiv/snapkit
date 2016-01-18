@@ -33,25 +33,3 @@ install(FILES
   declspec.h
   begin.h
   DESTINATION ${SNAPKIT_INCLUDE_SNAPKIT_DEST})
-# ==============================================================================
-# tests  -----------------------------------------------------------------------
-if(SNAPKIT_ENABLE_TEST)
-  # ----------------------------------------------------------------------------
-  set(SNAPKIT_INCLUDE_SNAPKIT_TEST_EXE)
-  # splint  --------------------------------------------------------------------
-  if(SPLINT)
-    add_test(include_snapkit-splint ${SPLINT_SH})
-    list(APPEND SNAPKIT_INCLUDE_SNAPKIT_TEST_EXE include_snapkit-splint)
-  endif()
-  # cpplint  -------------------------------------------------------------------
-  if(PYTHON)
-    add_test(include_snapkit-cpplint ${CPPLINT_SH})
-    list(APPEND SNAPKIT_INCLUDE_SNAPKIT_TEST_EXE include_snapkit-cpplint)
-  endif()
-  # environment  ---------------------------------------------------------------
-  set(TEST_ENV_ "${TEST_ENV}")
-  list(APPEND TEST_ENV_ "SRCDIR=${CMAKE_CURRENT_SOURCE_DIR}")
-  list(APPEND TEST_ENV_ "BUILDDIR=${CMAKE_CURRENT_BINARY_DIR}")
-  set_tests_properties(${SNAPKIT_INCLUDE_SNAPKIT_TEST_EXE}
-    PROPERTIES ENVIRONMENT "${TEST_ENV_}")
-endif()

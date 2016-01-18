@@ -12,14 +12,13 @@ replace_(){
     if [ ${#} -ne 2 ]; then
         exit 1
     fi
-
+    # --------------------------------------------------------------------------
     find ${CURRENT_DIR} -type f \
          \( -name          \*.in        -o -name    \*.sh \
          -o -name CMakeLists.txt        -o -name \*.cmake \
          -o -name           \*.h        -o -name     \*.c \
          -o -name          \*.hh        -o -name    \*.cc \
-         -o -name         \*.hpp        -o -name   \*.cpp \
-         -o -name       \*.cabal        -o -name    \*.hs \) \
+         -o -name         \*.hpp        -o -name   \*.cpp \) \
          -exec sed -i -E "s@${1}@${2}@g" {} \;
 }
 # ==============================================================================
@@ -32,6 +31,7 @@ snapkit_(){
         echo ${TARGET} already exists.
         exit 1
     fi
+    # --------------------------------------------------------------------------
     cp -r ${ROOT} ${TARGET}
     cd ${TARGET}
     rm -r ./.hg ./snapkit.sh
@@ -41,7 +41,7 @@ snapkit_(){
     mv include/snapkit include/${TARGET_LOWER}
     mv src/snapkit.cc src/${TARGET_LOWER}.cc
     cd ${CURRENT_DIR}
-    echo create ${1}
+    echo create ${TARGET}
 }
 
 # //////////////////////////////////////////////////////////////////////////////

@@ -19,6 +19,7 @@ replace_(){
          -o -name           \*.h        -o -name     \*.c \
          -o -name          \*.hh        -o -name    \*.cc \
          -o -name         \*.hpp        -o -name   \*.cpp \
+         -o -name        \*.toml                          \
          -o -name         .hgsub \) \
          -exec sed -i -E "s@${1}@${2}@g" {} \;
 }

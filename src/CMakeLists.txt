@@ -27,11 +27,9 @@ include_directories(${SNAPKIT_INCLUDE_DIRS})
 link_directories(${SNAPKIT_LIBRARY_DIRS})
 # ==============================================================================
 # snapkit  --------------------------------------------------------------------
-set(SNAPKIT_SOURCES
+add_library(snapkit SHARED
   snapkit.cc
   )
-# ------------------------------------------------------------------------------
-add_library(snapkit SHARED ${SNAPKIT_SOURCES})
 target_link_libraries(snapkit
   )
 set_target_properties(snapkit
@@ -41,17 +39,8 @@ set_target_properties(snapkit
   SOVERSION ${SNAPKIT_SOVERSION}
   COMPILE_FLAGS "-DSNAPKIT_EXPORTS ${SNAPKIT_CXX_FLAGS}")
 # ------------------------------------------------------------------------------
-add_library(snapkit-static STATIC ${SNAPKIT_SOURCES})
-target_link_libraries(snapkit-static
-  )
-set_target_properties(snapkit-static
-  PROPERTIES
-  OUTPUT_NAME snapkit
-  COMPILE_FLAGS "-DSNAPKIT_EXPORTS ${SNAPKIT_CXX_FLAGS}")
-# ------------------------------------------------------------------------------
 install(TARGETS
   snapkit
-  snapkit-static
   RUNTIME DESTINATION bin
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib)

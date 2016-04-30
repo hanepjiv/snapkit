@@ -11,7 +11,6 @@
  *  @date 2016/01/09
  */
 
-
 /* ########################################################################## */
 /*
   The MIT License (MIT)
@@ -37,10 +36,8 @@
   THE SOFTWARE.
 */
 
-
 #ifndef SNAPKIT_BEGIN_H_
 #define SNAPKIT_BEGIN_H_
-
 
 /* ########################################################################## */
 /* ========================================================================== */
@@ -57,6 +54,5 @@
 #  define SNAPKIT_DECLSPEC DECLSPEC_IMPORTS
 # endif
 #endif /* SNAPKIT_DECLSPEC */
-
 
 #endif  /* SNAPKIT_BEGIN_H_ */

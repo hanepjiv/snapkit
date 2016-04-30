@@ -11,7 +11,6 @@
  *  @date 2016/01/09
  */
 
-
 /* ########################################################################## */
 /*
   The MIT License (MIT)
@@ -36,7 +35,6 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
 */
-
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>

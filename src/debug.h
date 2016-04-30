@@ -8,9 +8,8 @@
  *
  *  @author hanepjiv <hanepjiv@gmail.com>
  *  @since 2016/01/09
- *  @date 2016/01/10
+ *  @date 2016/02/15
  */
-
 
 /* ########################################################################## */
 /*
@@ -37,10 +36,8 @@
   THE SOFTWARE.
 */
 
-
 #ifndef SNAPKIT_DEBUG_H_
 #define SNAPKIT_DEBUG_H_
-
 
 /* ////////////////////////////////////////////////////////////////////////// */
 /* ========================================================================== */
@@ -65,9 +62,9 @@
 #define SNAPKIT_VERBOSITY_CRITICAL        SNAPKIT_VERBOSITY_04
 /* -------------------------------------------------------------------------- */
 #define SNAPKIT_VERBOSITY_ALL             SNAPKIT_VERBOSITY_DEBUG
-#define SNAPKIT_VERBOSITY_DEFAULT         SNAPKIT_VERBOSITY_WARNING
+#define SNAPKIT_VERBOSITY_DEFAULT         SNAPKIT_VERBOSITY_INFO
 #define SNAPKIT_VERBOSITY_QUIET           SNAPKIT_VERBOSITY_CRITICAL
-    /* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////// */
 #ifdef SNAPKIT_DEBUG
 /* -------------------------------------------------------------------------- */
 # if !defined(SNAPKIT_VERBOSITY)
@@ -319,6 +316,5 @@
 # define SNAPKIT_ASSERT_ERROR(c, d) (void)(0)
 # define SNAPKIT_ASSERT_CRITICAL(c, d) (void)(0)
 #endif  /* SNAPKIT_DEBUG  /////////////////////////////////////////////////// */
-
 
 #endif  /* SNAPKIT_DEBUG_H_ */

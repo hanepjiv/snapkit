@@ -1,4 +1,4 @@
-/** -*- coding:utf-8-unix; -*-
+/** -*- mode:c; coding:utf-8-unix; -*-
  *  @file declspec.h
  *  @brief declspec.h
  *

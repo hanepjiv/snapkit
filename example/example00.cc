@@ -1,4 +1,4 @@
-/** -*- coding:utf-8; -*-
+/** -*- coding:utf-8-unix; -*-
  *  @file example00.cc
  *  @brief example00.cc
  *

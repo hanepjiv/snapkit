@@ -1,4 +1,4 @@
-/** -*- coding:utf-8; -*-
+/** -*- coding:utf-8-unix; -*-
  *  @file debug.h
  *  @brief debug.h
  *
@@ -8,7 +8,7 @@
  *
  *  @author hanepjiv <hanepjiv@gmail.com>
  *  @since 2016/01/09
- *  @date 2016/02/15
+ *  @date 2016/05/06
  */
 
 /* ########################################################################## */

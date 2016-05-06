@@ -1,4 +1,4 @@
-/** -*- coding:utf-8; -*-
+/** -*- coding:utf-8-unix; -*-
  *  @file call.h
  *  @brief call.h
  *

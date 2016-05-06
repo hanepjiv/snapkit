@@ -1,4 +1,4 @@
-/** -*- coding:utf-8; mode:c; -*-
+/** -*- mode:c; coding:utf-8-unix; -*-
  *  @file config.h.in
  *  @brief config.h.in
  *
@@ -8,7 +8,7 @@
  *
  *  @author hanepjiv <hagumo@gmail.com>
  *  @since 2016/01/09
- *  @date 2016/01/09
+ *  @date 2016/05/06
  */
 
 

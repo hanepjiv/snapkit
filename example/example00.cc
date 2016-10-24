@@ -9,7 +9,7 @@
  *  @author hanepjiv <hanepjiv@gmail.com>
  *  @copyright The MIT License (MIT)
  *  @since 2016/01/09
- *  @date 2016/05/11
+ *  @date 2016/10/24
  */
 
 #ifdef HAVE_CONFIG_H

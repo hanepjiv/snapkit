@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.3)
 set(CMAKE_MODULE_PATH
   ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/Modules/")
 # #############################################################################
-# snapkit  ===================================================================
+# snapkit  ====================================================================
 # -----------------------------------------------------------------------------
 set(SNAPKIT_PACKAGE     "snapkit")
 set(SNAPKIT_CURRENT     "0")
@@ -237,14 +237,14 @@ if(SNAPKIT_ENABLE_TEST)
   endforeach()
   set(SPLINT_SH /bin/env sh ${CMAKE_CURRENT_BINARY_DIR}/tools/et-splint/splint.sh)
   # cpplint  ------------------------------------------------------------------
-  find_program(PYTHON python)
+  find_program(PYTHON python2)
   if(NOT PYTHON)
     message(FATAL_ERROR "Test feature requires python.")
   endif()
   message(STATUS "${PYTHON}")
   configure_file(${abs_top_srcdir}/tools/et-cpplint/cpplint.sh.in
     tools/et-cpplint/cpplint.sh @ONLY)
-  set(CPPLINT "python ${abs_top_srcdir}/tools/et-cpplint/cpplint.py")
+  set(CPPLINT "${PYTHON} ${abs_top_srcdir}/tools/et-cpplint/cpplint.py")
   set(CPPLINT_FLAGS "")
   set(CPPLINT_SH /bin/env sh ${CMAKE_CURRENT_BINARY_DIR}/tools/et-cpplint/cpplint.sh)
   # LD_LIBRARY_PATH  ----------------------------------------------------------

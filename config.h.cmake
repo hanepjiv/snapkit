@@ -6,11 +6,11 @@
  *
  *  Copyright 2016 hanepjiv
  *
- *  @author hanepjiv <hagumo@gmail.com>
+ *  @author hanepjiv <hanepjiv@gmail.com>
+ *  @copyright The MIT License (MIT)
  *  @since 2016/01/09
- *  @date 2016/05/06
+ *  @date 2016/05/11
  */
-
 
 #ifndef @SNAPKIT_PACKAGE_UPPER@_CONFIG_H_
 #define @SNAPKIT_PACKAGE_UPPER@_CONFIG_H_

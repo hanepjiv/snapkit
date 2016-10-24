@@ -21,11 +21,11 @@ replace_(){
          -o -name         \*.hpp        -o -name   \*.cpp \
          -o -name        \*.toml                          \
          -o -name         .hgsub \) \
-         -exec sed -i -E "s@${1}@${2}@g" {} \;
+         -exec sed -i -E "s@${2}@${2}@g" {} \;
 }
 # ==============================================================================
 snapkit_(){
-    local TARGET=${1}
+    local TARGET=${2}
     local TARGET_LOWER=`echo ${TARGET} | tr [A-Z] [a-z]`
     local TARGET_UPPER=`echo ${TARGET} | tr [a-z] [A-Z]`
     # --------------------------------------------------------------------------
@@ -52,4 +52,4 @@ if [ ${#} -ne 1 ]; then
     exit 1
 fi
 
-snapkit_ ${1}
+snapkit_ ${2}

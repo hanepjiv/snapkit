@@ -46,14 +46,14 @@ if (CMAKE_COMPILER_IS_GNUCC OR
     CMAKE_C_COMPILER_ID STREQUAL "Clang")       # GCC or Clang  ===============
   # Common  -------------------------------------------------------------------
   if (UNIX)
-    set(COMPILER_C_CXX_FLAGS "${COMPILER_C_CXX_FLAGS} -fPIC")
+    set(COMPILER_C_CXX_FLAGS "${COMPILER_C_CXX_FLAGS} -fPIE")
     set(COMPILER_SHARED_LINKER_FLAGS "${COMPILER_SHARED_LINKER_FLAGS} -Wl,-z,defs")
   elseif(MINGW)
     set(COMPILER_SHARED_LINKER_FLAGS "${COMPILER_SHARED_LINKER_FLAGS} -Wl,--no-undefined")
   else()
     message(FATAL_ERROR "not yet supported.")
   endif()
-  set(COMPILER_C_CXX_FLAGS "${COMPILER_C_CXX_FLAGS} -pipe -DPIC -D_REENTRANT -D_THREAD_SAFE -fvisibility=hidden -fstrict-aliasing -pedantic-errors -W -Wall -Wextra -Werror -Wstrict-aliasing=1 -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wcast-qual -Wcast-align -Wwrite-strings -Wno-missing-field-initializers -Wno-sign-compare -Wconversion -Wfloat-equal -Wredundant-decls -Wno-unused-parameter -Wunused-result -Wmissing-declarations -Wsign-compare")
+  set(COMPILER_C_CXX_FLAGS "${COMPILER_C_CXX_FLAGS} -pipe -DPIC -DPIE -D_REENTRANT -D_THREAD_SAFE -fvisibility=hidden -fstrict-aliasing -pedantic-errors -W -Wall -Wextra -Werror -Wstrict-aliasing=1 -Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wcast-qual -Wcast-align -Wwrite-strings -Wno-missing-field-initializers -Wno-sign-compare -Wconversion -Wfloat-equal -Wredundant-decls -Wno-unused-parameter -Wunused-result -Wmissing-declarations -Wsign-compare")
   set(COMPILER_C_FLAGS "${COMPILER_C_FLAGS} -Wbad-function-cast -Wstrict-prototypes -Wold-style-definition -Wmissing-prototypes -Wnested-externs -Wdeclaration-after-statement")
   set(COMPILER_CXX_FLAGS "${COMPILER_CXX_FLAGS} -fvisibility-inlines-hidden -fthreadsafe-statics -Weffc++ -Woverloaded-virtual -Wsign-promo -Wsynth")
   set(COMPILER_SHARED_LINKER_FLAGS "${COMPILER_SHARED_LINKER_FLAGS} -shared")
@@ -68,7 +68,7 @@ if (CMAKE_COMPILER_IS_GNUCC OR
 endif()
 if (CMAKE_COMPILER_IS_GNUCC)                    # GCC  ========================
   # Common  -------------------------------------------------------------------
-  #  pass
+  set(COMPILER_EXE_LINKER_FLAGS "${COMPILER_EXE_LINKER_FLAGS} -pie -rdynamic")
   # Debug  --------------------------------------------------------------------
   set(COMPILER_C_CXX_FLAGS_DEBUG "${COMPILER_C_CXX_FLAGS_DEBUG} -pg -ftrapv")
   set(COMPILER_EXE_LINKER_FLAGS_DEBUG "${COMPILER_EXE_LINKER_FLAGS_DEBUG} -pg")
@@ -76,14 +76,15 @@ if (CMAKE_COMPILER_IS_GNUCC)                    # GCC  ========================
   # Release  ------------------------------------------------------------------
   #   pass
   # RelWithDebInfo  -----------------------------------------------------------
-  set(COMPILER_C_CXX_FLAGS_RELWITHDEBINFO "${COMPILER_C_CXX_FLAGS_RELWITHDEBINFO} ${COMPILER_C_CXX_FLAGS_DEBUG}")
-  set(COMPILER_EXE_LINKER_FLAGS_RELWITHDEBINFO "${COMPILER_EXE_LINKER_FLAGS_RELWITHDEBINFO} ${COMPILER_EXE_LINKER_FLAGS_DEBUG}")
-  set(COMPILER_MODULE_LINKER_FLAGS_RELWITHDEBINFO "${COMPILER_MODULE_LINKER_FLAGS_RELWITHDEBINFO} ${COMPILER_MODULE_LINKER_FLAGS_RELWITHDEBINFO}")
+  set(COMPILER_C_CXX_FLAGS_RELWITHDEBINFO "${COMPILER_C_CXX_FLAGS_RELWITHDEBINFO} -pg -ftrapv")
+  set(COMPILER_EXE_LINKER_FLAGS_RELWITHDEBINFO "${COMPILER_EXE_LINKER_FLAGS_RELWITHDEBINFO} -pg")
+  set(COMPILER_MODULE_LINKER_FLAGS_RELWITHDEBINFO "${COMPILER_MODULE_LINKER_FLAGS_RELWITHDEBINFO} -pg")
   # MinSizeRel  ---------------------------------------------------------------
   #   pass
 elseif(CMAKE_C_COMPILER_ID STREQUAL "Clang")    # Clang  ======================
   # Common  -------------------------------------------------------------------
   set(COMPILER_C_FLAGS "${COMPILER_C_FLAGS} -fsanitize-undefined-trap-on-error")
+  set(COMPILER_EXE_LINKER_FLAGS "${COMPILER_EXE_LINKER_FLAGS} -Wl,-pie,-export-dynamic")
   # Debug  --------------------------------------------------------------------
   #   pass
   # Release  ------------------------------------------------------------------
@@ -113,7 +114,7 @@ set(USER_EXE_LINKER_FLAGS_DEBUG "${COMPILER_EXE_LINKER_FLAGS_DEBUG}" CACHE STRIN
 set(USER_MODULE_LINKER_FLAGS_DEBUG "${COMPILER_MODULE_LINKER_FLAGS_DEBUG}" CACHE STRING "")
 set(USER_SHARED_LINKER_FLAGS_DEBUG "${COMPILER_SHARED_LINKER_FLAGS_DEBUG}" CACHE STRING "")
 set(USER_STATIC_LINKER_FLAGS_DEBUG "${COMPILER_STATIC_LINKER_FLAGS_DEBUG}" CACHE STRING "")
-# Release  --------------------------------------------------------------------
+# Release  ------------------------------------------------------------------
 set(USER_C_FLAGS_RELEASE "${COMPILER_C_CXX_FLAGS_RELEASE} ${COMPILER_C_FLAGS_RELEASE}" CACHE STRING "")
 set(USER_CXX_FLAGS_RELEASE "${COMPILER_C_CXX_FLAGS_RELEASE} ${COMPILER_CXX_FLAGS_RELEASE}" CACHE STRING "")
 set(USER_EXE_LINKER_FLAGS_RELEASE "${COMPILER_EXE_LINKER_FLAGS_RELEASE}" CACHE STRING "")

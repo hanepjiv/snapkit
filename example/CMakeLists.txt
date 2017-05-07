@@ -12,7 +12,8 @@ add_executable(example00 ${example00_SRCS})
 target_link_libraries(example00 ${SNAPKIT_LIBRARIES})
 set_target_properties(example00
   PROPERTIES
-  COMPILE_FLAGS "${SNAPKIT_CXX_FLAGS}"
+  COMPILE_FLAGS         "${SNAPKIT_CXX_FLAGS}"
+  LINK_FLAGS            "${SNAPKIT_LD_FLAGS}"
   )
 # =============================================================================
 # tests -----------------------------------------------------------------------

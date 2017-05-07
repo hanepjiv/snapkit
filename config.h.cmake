@@ -7,9 +7,9 @@
  *  Copyright 2016 hanepjiv
  *
  *  @author hanepjiv <hanepjiv@gmail.com>
- *  @copyright The MIT License (MIT)
+ *  @copyright The MIT License (MIT) / Apache License Version 2.0
  *  @since 2016/01/09
- *  @date 2016/05/11
+ *  @date 2017/05/07
  */
 
 #ifndef @SNAPKIT_PACKAGE_UPPER@_CONFIG_H_

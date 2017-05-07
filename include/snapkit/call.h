@@ -7,9 +7,9 @@
  *  Copyright 2016 hanepjiv
  *
  *  @author hanepjiv <hanepjiv@gmail.com>
- *  @copyright The MIT License (MIT)
+ *  @copyright The MIT License (MIT) / Apache License Version 2.0
  *  @since 2016/01/09
- *  @date 2016/05/11
+ *  @date 2017/05/07
  */
 
 #ifndef SNAPKIT_CALL_H_
@@ -17,11 +17,11 @@
 
 /* ######################################################################### */
 /* ========================================================================= */
-#ifndef CALL_CDECL
+#ifndef SNAPKIT_CALL_CDECL
 # if defined(_WINDOWS) && !defined(__GNUC__)
-#  define CALL_CDECL __cdecl
+#  define SNAPKIT_CALL_CDECL __cdecl
 # else
-#  define CALL_CDECL
+#  define SNAPKIT_CALL_CDECL
 # endif
 #endif  /* CALL_CDECL */
 

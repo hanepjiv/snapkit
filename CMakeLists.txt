@@ -25,8 +25,7 @@ set(SNAPKIT_VERSION "${SNAPKIT_MAJOR}.${SNAPKIT_AGE}.${SNAPKIT_REVISION}")
 set(SNAPKIT_SOVERSION "${SNAPKIT_MAJOR}")
 # -----------------------------------------------------------------------------
 project(${SNAPKIT_PACKAGE}
-  VERSION ${SNAPKIT_VERSION}
-  LANGUAGES C CXX)
+  VERSION ${SNAPKIT_VERSION})
 # #############################################################################
 # include  ====================================================================
 # -----------------------------------------------------------------------------
@@ -55,6 +54,7 @@ set(SNAPKIT_CXX_FLAGS_DEBUG             "")
 set(SNAPKIT_CXX_FLAGS_RELWITHDEBINFO    "")
 set(SNAPKIT_CXX_FLAGS_RELEASE           "")
 set(SNAPKIT_CXX_FLAGS_MINSIZEREL        "")
+set(SNAPKIT_LD_FLAGS                    "")
 # -----------------------------------------------------------------------------
 if (CMAKE_COMPILER_IS_GNUCC OR
     CMAKE_C_COMPILER_ID STREQUAL "Clang")       # GCC or Clang  ===============

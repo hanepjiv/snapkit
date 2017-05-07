@@ -15,7 +15,9 @@ set_target_properties(snapkit
   OUTPUT_NAME snapkit
   VERSION ${SNAPKIT_VERSION}
   SOVERSION ${SNAPKIT_SOVERSION}
-  COMPILE_FLAGS "-DSNAPKIT_EXPORTS ${SNAPKIT_CXX_FLAGS}")
+  COMPILE_FLAGS         "-DSNAPKIT_EXPORTS ${SNAPKIT_CXX_FLAGS}"
+  LINK_FLAGS            "${SNAPKIT_LD_FLAGS}"
+  )
 # -----------------------------------------------------------------------------
 install(TARGETS
   snapkit

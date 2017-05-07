@@ -4,12 +4,12 @@
  *
  *  test00.cc
  *
- *  Copyright 2016 hanepjiv
+ *  Copyright 2017 hanepjiv
  *
  *  @author hanepjiv <hanepjiv@gmail.com>
  *  @copyright The MIT License (MIT) / Apache License Version 2.0
- *  @since 2016/01/09
- *  @date 2017/05/01
+ *  @since 2017/05/07
+ *  @date 2017/05/07
  */
 
 #ifdef HAVE_CONFIG_H

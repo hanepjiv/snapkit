@@ -4,12 +4,12 @@
  *
  *  begin.h
  *
- *  Copyright 2017 hanepjiv
+ *  Copyright %%YEAR%% hanepjiv
  *
  *  @author hanepjiv <hanepjiv@gmail.com>
  *  @copyright The MIT License (MIT) / Apache License Version 2.0
- *  @since 2017/05/07
- *  @date 2017/05/07
+ *  @since %%TODAY%%
+ *  @date %%TODAY%%
  */
 
 #ifndef SNAPKIT_BEGIN_H_

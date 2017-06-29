@@ -135,9 +135,10 @@ set(SNAPKIT_LIBRARIES "")
 # libraries  ==================================================================
 # boost  ----------------------------------------------------------------------
 set(Boost_USE_MULTITHREADED ON)
-find_package(Boost 1.56.0 REQUIRED COMPONENTS)
-list(APPEND SNAPKIT_INCLUDE_DIRS        ${Boost_INCLUDE_DIR})
-list(APPEND SNAPKIT_LIBRARY_DIRS        ${Boost_LIBRARY_DIR})
+find_package(Boost 1.62.0 REQUIRED COMPONENTS system)
+list(APPEND SNAPKIT_INCLUDE_DIRS        ${Boost_INCLUDE_DIRS})
+list(APPEND SNAPKIT_LIBRARY_DIRS        ${Boost_LIBRARY_DIRS})
+list(APPEND SNAPKIT_LIBRARIES           ${Boost_SYSTEM_LIBRARIES})
 # ltdl  -----------------------------------------------------------------------
 find_path(LTDL_INCLUDE_DIR ltdl.h)
 find_library(LTDL_LIBRARIES NAMES ltdl)

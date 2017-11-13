@@ -16,7 +16,7 @@ set_target_properties(snapkit
   VERSION ${SNAPKIT_VERSION}
   SOVERSION ${SNAPKIT_SOVERSION}
   COMPILE_FLAGS         "-DSNAPKIT_EXPORTS ${SNAPKIT_CXX_FLAGS}"
-  LINK_FLAGS            "${SNAPKIT_LD_FLAGS}"
+  LINK_FLAGS            "-fPIC -DPIC -DPIE ${SNAPKIT_LD_FLAGS}"
   )
 # -----------------------------------------------------------------------------
 install(TARGETS

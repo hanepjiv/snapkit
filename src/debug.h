@@ -9,7 +9,7 @@
  *  @author hanepjiv <hanepjiv@gmail.com>
  *  @copyright The MIT License (MIT) / Apache License Version 2.0
  *  @since %%TODAY%%
- *  @date 2017/08/01
+ *  @date 2017/10/04
  */
 
 #ifndef SNAPKIT_DEBUG_H_
@@ -20,8 +20,8 @@
 #define SNAPKIT_VERBOSITY_DEBUG                 (0x00)
 #define SNAPKIT_VERBOSITY_INFO                  (0x3F)
 #define SNAPKIT_VERBOSITY_WARNING               (0x7F)
-#define SNAPKIT_VERBOSITY_ERROR                 (0xBF)SNAPKIT_VERBOSITY_03
-#define SNAPKIT_VERBOSITY_CRITICAL              (0xFF)SNAPKIT_VERBOSITY_04
+#define SNAPKIT_VERBOSITY_ERROR                 (0xBF)
+#define SNAPKIT_VERBOSITY_CRITICAL              (0xFF)
 /* ------------------------------------------------------------------------- */
 #define SNAPKIT_VERBOSITY_ALL                   SNAPKIT_VERBOSITY_DEBUG
 #define SNAPKIT_VERBOSITY_DEFAULT               SNAPKIT_VERBOSITY_INFO

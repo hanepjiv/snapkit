@@ -4,14 +4,14 @@
 ##  @file snapkit.sh
 ##  @brief snapkit.sh
 ##
-##  debug.h
+##  snapkit.sh
 ##
 ##  Copyright 2017 hanepjiv
 ##
 ##  @author hanepjiv <hanepjiv@gmail.com>
 ##  @copyright The MIT License (MIT) / Apache License Version 2.0
 ##  @since 2017
-##  @date 2017/05/10
+##  @date 2017/10/04
 
 # /////////////////////////////////////////////////////////////////////////////
 # =============================================================================

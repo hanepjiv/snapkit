@@ -26,7 +26,7 @@ if(SNAPKIT_ENABLE_TEST)
   target_link_libraries(test00 ${SNAPKIT_LIBRARIES})
   set_target_properties(test00
     PROPERTIES
-    COMPILE_FLAGS       "-fPIE -DPIC -DPIE ${SNAPKIT_CXX_FLAGS}"
+    COMPILE_FLAGS       "${SNAPKIT_CXX_FLAGS}"
     LINK_FLAGS          "${SNAPKIT_LD_FLAGS}"
     )
   add_test(test-test00 test00)

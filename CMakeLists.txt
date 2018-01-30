@@ -193,6 +193,7 @@ if(SNAPKIT_ENABLE_TEST)
   enable_testing()
   # checks  ===================================================================
   # splint  -------------------------------------------------------------------
+  set(ET_SPLINT_INCLUDE_DIRS "${SNAPKIT_INCLUDE_DIRS}")
   include(./tools/et-splint/Module.cmake)
   # cpplint  ------------------------------------------------------------------
   include(./tools/et-cpplint/Module.cmake)

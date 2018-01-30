@@ -1,7 +1,7 @@
 # #############################################################################
 # CMake  ======================================================================
 # -----------------------------------------------------------------------------
-cmake_minimum_required(VERSION 3.7.2)
+cmake_minimum_required(VERSION 3.9.6)
 set(CMAKE_MODULE_PATH
   ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/Modules/")
 # #############################################################################
@@ -11,7 +11,7 @@ set(SNAPKIT_PACKAGE     "snapkit")
 set(SNAPKIT_CURRENT     "0")
 set(SNAPKIT_REVISION    "0")
 set(SNAPKIT_AGE         "0")
-set(SNAPKIT_BUGREPORT   "hanepjiv <hanepjiv@gmail.com>")
+set(SNAPKIT_BUGREPORT   "%%AUTHOR%% <%%MAIL_NAME%%@%%MAIL_DOMAIN%%>")
 set(SNAPKIT_URL         "https://")
 # -----------------------------------------------------------------------------
 if(${SNAPKIT_CURRENT} LESS ${SNAPKIT_AGE})

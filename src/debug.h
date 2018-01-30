@@ -4,12 +4,12 @@
  *
  *  debug.h
  *
- *  Copyright %%YEAR%% hanepjiv
+ *  Copyright %%YEAR%% %%AUTHOR%%
  *
- *  @author hanepjiv <hanepjiv@gmail.com>
+ *  @author %%AUTHOR%% <%%MAIL_NAME%%@%%MAIL_DOMAIN%%>
  *  @copyright The MIT License (MIT) / Apache License Version 2.0
  *  @since %%TODAY%%
- *  @date 2017/10/04
+ *  @date %%TODAY%%
  */
 
 #ifndef SNAPKIT_DEBUG_H_

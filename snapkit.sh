@@ -10,8 +10,8 @@
 ##
 ##  @author hanepjiv <hanepjiv@gmail.com>
 ##  @copyright The MIT License (MIT) / Apache License Version 2.0
-##  @since 2017
-##  @date 2017/10/04
+##  @since 2017/01/01
+##  @date 2018/01/30
 
 # /////////////////////////////////////////////////////////////////////////////
 # =============================================================================
@@ -38,7 +38,10 @@ replace_(){
 }
 # =============================================================================
 snapkit_(){
-    local TARGET=${1}
+    local AUTHOR=${1}
+    local MAIL_NAME=${2}
+    local MAIL_DOMAIN=${3}
+    local TARGET=${4}
     local TARGET_LOWER=`echo ${TARGET} | tr [A-Z] [a-z]`
     local TARGET_UPPER=`echo ${TARGET} | tr [a-z] [A-Z]`
     local TODAY=`date +%Y/%m/%d`
@@ -52,6 +55,9 @@ snapkit_(){
     cp -r ${ROOT} ${TARGET}
     cd ${TARGET}
     rm -r .hg .hgsubstate snapkit.sh
+    replace_ %%AUTHOR%% ${AUTHOR}
+    replace_ %%MAIL_NAME%% ${MAIL_NAME}
+    replace_ %%MAIL_DOMAIN%% ${MAIL_DOMAIN}
     replace_ snapkit ${TARGET_LOWER}
     replace_ SNAPKIT ${TARGET_UPPER}
     replace_ %%TODAY%% ${TODAY}
@@ -62,11 +68,59 @@ snapkit_(){
     cd ${CURRENT_DIR}
     echo create ${TARGET}
 }
+# =============================================================================
+usage_() {
+    cat <<EOF 2>&1
+Usage: ${0}
+
+        [-h | --help] -a <AUTHOR> <TARGET>
+        -h, --help              : print this help message
+        -a <AUTHOR>             : author name
+        -m <MAIL_DOMAIN>        : mail address domain. <AUTHOR>@<MAIL_DOMAIN>
+        <TARGET>                : target name
+EOF
+}
 
 # /////////////////////////////////////////////////////////////////////////////
 # =============================================================================
-if [ ${#} -ne 1 ]; then
-    exit 1
+AUTHOR=""
+MAIL_NAME=""
+MAIL_DOMAIN=""
+TARGET=""
+
+if [ ${#} -lt 1 ]; then
+    usage_
+    exit 0
 fi
 
-snapkit_ ${1}
+while [ ${#} -gt 0 ]; do
+    case ${1} in
+        -h | --help)    usage_;                 exit 0  ;;
+        -a)             AUTHOR=${2};            shift 2 ;;
+        -m)             MAIL_NAME=${2}          shift 2 ;;
+        -d)             MAIL_DOMAIN=${2}        shift 2 ;;
+        *)              TARGET=${1}             shift 1 ;;
+    esac
+done
+
+if [ -z "${AUTHOR}" ]; then
+   echo "invalid argument: -a <AUTHOR>"
+   exit 1
+fi
+
+if [ -z "${MAIL_NAME}" ]; then
+    MAIL_NAME=${AUTHOR}
+fi
+
+if [ -z "${MAIL_DOMAIN}" ]; then
+   echo "invalid argument: -a <MAIL_DOMAIN>"
+   exit 1
+fi
+
+if [ -z "${TARGET}" ]; then
+   echo "invalid argument: <TARGET>"
+   exit 1
+fi
+
+echo AUTHOR=${AUTHOR} MAIL_NAME=${MAIL_NAME} MAIL_DOMAIN=${MAIL_DOMAIN} TARGET=${TARGET}
+snapkit_ ${AUTHOR} ${MAIL_NAME} ${MAIL_DOMAIN} ${TARGET}

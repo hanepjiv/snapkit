@@ -4,9 +4,9 @@
  *
  *  test00.cc
  *
- *  Copyright %%YEAR%% hanepjiv
+ *  Copyright %%YEAR%% %%AUTHOR%%
  *
- *  @author hanepjiv <hanepjiv@gmail.com>
+ *  @author %%AUTHOR%% <%%MAIL_NAME%%@%%MAIL_DOMAIN%%>
  *  @copyright The MIT License (MIT) / Apache License Version 2.0
  *  @since %%TODAY%%
  *  @date %%TODAY%%

@@ -101,9 +101,16 @@ if (CMAKE_COMPILER_IS_GNUCC)                    # GCC  ========================
   # MinSizeRel  ---------------------------------------------------------------
   #   pass
 elseif(CMAKE_C_COMPILER_ID STREQUAL "Clang")    # Clang  ======================
+  if(MINGW)
+    # pass
+  elseif (UNIX)
+    # Common  -----------------------------------------------------------------
+    set(COMPILER_EXE_LINKER_FLAGS "${COMPILER_EXE_LINKER_FLAGS} -pie -export-dynamic")
+  else()
+    message(FATAL_ERROR "not yet supported.")
+  endif()
   # Common  -------------------------------------------------------------------
   set(COMPILER_C_FLAGS "${COMPILER_C_FLAGS} -fsanitize-undefined-trap-on-error")
-  set(COMPILER_EXE_LINKER_FLAGS "${COMPILER_EXE_LINKER_FLAGS} -Wl,-pie,-export-dynamic")
   # Debug  --------------------------------------------------------------------
   #   pass
   # Release  ------------------------------------------------------------------

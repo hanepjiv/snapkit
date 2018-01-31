@@ -11,7 +11,7 @@
 ##  @author hanepjiv <hanepjiv@gmail.com>
 ##  @copyright The MIT License (MIT) / Apache License Version 2.0
 ##  @since 2017/01/01
-##  @date 2018/01/30
+##  @date 2018/01/31
 
 # /////////////////////////////////////////////////////////////////////////////
 # =============================================================================
@@ -73,10 +73,11 @@ usage_() {
     cat <<EOF 2>&1
 Usage: ${0}
 
-        [-h | --help] -a <AUTHOR> <TARGET>
+        [-h | --help] -a <AUTHOR> [-m <MAIL_NAME>] -d <MAIL_DOMAIN> <TARGET>
         -h, --help              : print this help message
         -a <AUTHOR>             : author name
-        -m <MAIL_DOMAIN>        : mail address domain. <AUTHOR>@<MAIL_DOMAIN>
+        -m <MAIL_DOMAIN>        : mail address name. <AUTHOR>@<MAIL_DOMAIN>
+        -d <MAIL_DOMAIN>        : mail address domain. <AUTHOR>@<MAIL_DOMAIN>
         <TARGET>                : target name
 EOF
 }
@@ -113,7 +114,7 @@ if [ -z "${MAIL_NAME}" ]; then
 fi
 
 if [ -z "${MAIL_DOMAIN}" ]; then
-   echo "invalid argument: -a <MAIL_DOMAIN>"
+   echo "invalid argument: -d <MAIL_DOMAIN>"
    exit 1
 fi
 

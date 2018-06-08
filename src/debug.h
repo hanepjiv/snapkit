@@ -9,7 +9,7 @@
  *  @author %%AUTHOR%% <%%MAIL_NAME%%@%%MAIL_DOMAIN%%>
  *  @copyright The MIT License (MIT) / Apache License Version 2.0
  *  @since %%TODAY%%
- *  @date %%TODAY%%
+ *  @date 2018/06/08
  */
 
 #ifndef SNAPKIT_DEBUG_H_
@@ -47,7 +47,7 @@
 #define SNAPKIT_TRACE_ALWAYS__(d, line)                                 \
   do {                                                                  \
     SNAPKIT_USING_NAMESPACE_STD;                                        \
-    (void) fputs(PACKAGE_STRING " : " __FILE__ "(" #line ") : " d "\n", \
+    (void) fputs(PACKAGE_STRING ": " __FILE__ "(" #line "): " d "\n",   \
                  stderr);                                               \
     (void) fflush(stderr);                                              \
   } while (0)
@@ -60,7 +60,7 @@
 # define SNAPKIT_TRACEF_ALWAYS__(line, fmt, ...)                        \
   do {                                                                  \
     SNAPKIT_USING_NAMESPACE_STD;                                        \
-    fprintf(stderr, __FILE__ "(" #line ") " __func__ " : " fmt "\n",    \
+    fprintf(stderr, __FILE__ "(" #line ") %s: " fmt "\n", __func__,     \
             __VA_ARGS__);                                               \
     (void) fflush(stderr);                                              \
   } while (0)

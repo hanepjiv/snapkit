@@ -13,4 +13,4 @@ Requires:
 Requires.private:
 Conflicts:
 Cflags: -I${includedir} @SNAPKIT_THREAD_CFLAGS@
-Libs: -L${libdir} @SNAPKIT_THREAD_LIBS@
+Libs: -Wl,-L${libdir},-dy,-l@PACKAGE@ @SNAPKIT_THREAD_LIBS@

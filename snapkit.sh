@@ -11,7 +11,7 @@
 ##  @author hanepjiv <hanepjiv@gmail.com>
 ##  @copyright The MIT License (MIT) / Apache License Version 2.0
 ##  @since 2017/01/01
-##  @date 2018/01/31
+##  @date 2023/10/01
 
 # /////////////////////////////////////////////////////////////////////////////
 # =============================================================================
@@ -76,8 +76,8 @@ Usage: ${0}
         [-h | --help] -a <AUTHOR> [-m <MAIL_NAME>] -d <MAIL_DOMAIN> <TARGET>
         -h, --help              : print this help message
         -a <AUTHOR>             : author name
-        -m <MAIL_DOMAIN>        : mail address name. <AUTHOR>@<MAIL_DOMAIN>
-        -d <MAIL_DOMAIN>        : mail address domain. <AUTHOR>@<MAIL_DOMAIN>
+        -m <MAIL_NAME>          : mail address name. <MAIL_NAME>@<MAIL_DOMAIN>
+        -d <MAIL_DOMAIN>        : mail address domain. <MAIL_NAME>@<MAIL_DOMAIN>
         <TARGET>                : target name
 EOF
 }

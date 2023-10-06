@@ -48,8 +48,12 @@ cd ${SH_SOURCE_DIR}/../..
 # =============================================================================
 clone_target() {
     local target="${1}"
-
     local target_dir="${OUTPUT_DIR}/${target}"
+
+    if [ -d ${target_dir} ] ; then
+        echo ${target} already exists.
+        return 0
+    fi
 
     local target_tr=`echo ${target} | tr - _`
 
@@ -58,11 +62,6 @@ clone_target() {
 
     local target_tr_b="${target_tr}_B"
     local target_b=`eval echo '$'${target_tr_b}`
-
-    if [ -d ${target_dir} ] ; then
-        echo ${target} already exists.
-        return 0
-    fi
 
     git clone ${target_repo} -b ${target_b} ${target_dir} || return 1
 

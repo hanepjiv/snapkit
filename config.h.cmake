@@ -9,7 +9,7 @@
  *  @author %%AUTHOR%% <%%MAIL_NAME%%@%%MAIL_DOMAIN%%>
  *  @copyright The MIT License (MIT) / Apache License Version 2.0
  *  @since %%TODAY%%
- *  @date %%TODAY%%
+ *  @date %TODAY%
  */
 
 #ifndef @SNAPKIT_PACKAGE_UPPER@_CONFIG_H_
@@ -24,10 +24,12 @@
 #define PACKAGE_VERSION         "@SNAPKIT_VERSION@"
 #define VERSION                 "@SNAPKIT_VERSION@"
 
-#if @Boost_FOUND@
-#  define HAVE_BOOST 1
-#else
-#  undef HAVE_BOOST
-#endif
+#define TRUE 1
+#  if @Boost_FOUND@
+#    define HAVE_BOOST 1
+#  else
+#    undef HAVE_BOOST
+#  endif
+#undef TRUE
 
 #endif  /* @SNAPKIT_PACKAGE_UPPER@_CONFIG_H_ */

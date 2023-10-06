@@ -11,7 +11,7 @@
 ##  @author hanepjiv <hanepjiv@gmail.com>
 ##  @copyright The MIT License (MIT) / Apache License Version 2.0
 ##  @since 2017/01/01
-##  @date 2023/10/01
+##  @date 2023/10/07
 
 # /////////////////////////////////////////////////////////////////////////////
 # =============================================================================
@@ -33,8 +33,8 @@ replace_(){
          -o -name         \*.hpp        -o -name   \*.cpp \
          -o -name        \*.toml                          \
          -o -name     LICENSE-\*                          \
-         -o -name         .hgsub \) \
-         -exec sed -i -E "s@${1}@${2}@g" {} \;
+         \) \
+             -exec sed -i -E "s@${1}@${2}@g" {} \;
 }
 # =============================================================================
 snapkit_(){
@@ -42,19 +42,21 @@ snapkit_(){
     local MAIL_NAME=${2}
     local MAIL_DOMAIN=${3}
     local TARGET=${4}
+    local TARGET_DIR="${TARGET}/orig"
     local TARGET_LOWER=`echo ${TARGET} | tr [A-Z] [a-z]`
     local TARGET_UPPER=`echo ${TARGET} | tr [a-z] [A-Z]`
     local TODAY=`date +%Y/%m/%d`
     local YEAR=`date +%Y`
     # -------------------------------------------------------------------------
-    if [ -e ${TARGET} ] ; then
+    if [ -d ${TARGET} ] ; then
         echo ${TARGET} already exists.
         exit 1
     fi
     # -------------------------------------------------------------------------
-    cp -r ${ROOT} ${TARGET}
-    cd ${TARGET}
-    rm -r .hg .hgsubstate snapkit.sh
+    mkdir ${TARGET}
+    cp -r ${ROOT} ${TARGET_DIR}
+    cd ${TARGET_DIR}
+    rm -rf .git .gitignore snapkit.sh
     replace_ %%AUTHOR%% ${AUTHOR}
     replace_ %%MAIL_NAME%% ${MAIL_NAME}
     replace_ %%MAIL_DOMAIN%% ${MAIL_DOMAIN}

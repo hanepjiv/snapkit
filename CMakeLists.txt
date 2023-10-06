@@ -135,7 +135,7 @@ set(SNAPKIT_LIBRARIES "")
 # libraries  ==================================================================
 # boost  ----------------------------------------------------------------------
 set(Boost_USE_MULTITHREADED ON)
-find_package(Boost 1.62.0 REQUIRED COMPONENTS system)
+find_package(Boost 1.82.0 REQUIRED COMPONENTS system)
 list(APPEND SNAPKIT_INCLUDE_DIRS        ${Boost_INCLUDE_DIRS})
 list(APPEND SNAPKIT_LIBRARY_DIRS        ${Boost_LIBRARY_DIRS})
 list(APPEND SNAPKIT_LIBRARIES           ${Boost_SYSTEM_LIBRARIES})
@@ -194,9 +194,9 @@ if(SNAPKIT_ENABLE_TEST)
   # checks  ===================================================================
   # splint  -------------------------------------------------------------------
   set(ET_SPLINT_INCLUDE_DIRS "${SNAPKIT_INCLUDE_DIRS}")
-  include(./tools/et-splint/Module.cmake)
+  include(../dependencies/et-splint/Module.cmake)
   # cpplint  ------------------------------------------------------------------
-  include(./tools/et-cpplint/Module.cmake)
+  include(../dependencies/et-cpplint/Module.cmake)
   # LD_LIBRARY_PATH  ----------------------------------------------------------
   set(LD_LIBRARY_PATH "")
   foreach(loop_var IN LISTS SNAPKIT_LIBRARY_DIRS)

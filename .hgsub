@@ -1,6 +1,0 @@
-tools/et-splint         = tools/et-splint
-tools/et-cpplint        = tools/et-cpplint
-
-[subpaths]
-ssh://hg@bitbucket.org/hanepjiv/snapkit/tools/et-cpplint        = ssh://hg@bitbucket.org/hanepjiv/et-cpplint
-ssh://hg@bitbucket.org/hanepjiv/snapkit/tools/et-splint         = ssh://hg@bitbucket.org/hanepjiv/et-splint

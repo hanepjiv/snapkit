@@ -67,8 +67,7 @@ clone_target() {
 }
 # -----------------------------------------------------------------------------
 clone() {
-    for target in "${TARGETS[@]}"
-    do
+    for target in "${TARGETS[@]}"; do
         clone_target "${target}" || return 1
     done
     return 0
@@ -84,8 +83,7 @@ remove_target() {
 }
 # -----------------------------------------------------------------------------
 remove() {
-    for target in "${TARGETS[@]}"
-    do
+    for target in "${TARGETS[@]}"; do
         remove_target "${target}" || return 1
     done
     return 0
@@ -93,8 +91,8 @@ remove() {
 # =============================================================================
 while [ ${#} -gt 0 ]; do
     case ${1} in
-        clone)  clone; shift 1 ;;
-        remove)  remove; shift 1 ;;
+        clone)          clone;  shift 1                         ;;
+        remove)         remove; shift 1                         ;;
         -h | --help)    usage_; exit 0                          ;;
         *)              echo "invalid argument: ${1}"; exit 1   ;;
     esac

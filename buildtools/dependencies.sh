@@ -38,12 +38,10 @@ et_splint_B="master"
 et_cpplint_REPO="git@github.com:hanepjiv/et-cpplint.git"
 et_cpplint_B="master"
 # =============================================================================
-OUTPUT_DIR="dependencies"
-# =============================================================================
 CURRENT_DIR="${PWD}"
 SH_SOURCE=${BASH_SOURCE:-$0}
 SH_SOURCE_DIR="$(cd $(dirname ${SH_SOURCE}); pwd)"
-cd ${SH_SOURCE_DIR}/../..
+OUTPUT_DIR="$(cd ${CURRENT_DIR}/..; pwd)"
 # /////////////////////////////////////////////////////////////////////////////
 # =============================================================================
 clone_target() {
@@ -76,8 +74,20 @@ clone() {
     return 0
 }
 # =============================================================================
+remove_target() {
+    local target="${1}"
+    local target_dir="${OUTPUT_DIR}/${target}"
+
+    rm -rf ${target_dir} ||  return 1
+
+    return 0
+}
+# -----------------------------------------------------------------------------
 remove() {
-    rm -rf ${OUTPUT_DIR} ||  return 1
+    for target in "${TARGETS[@]}"
+    do
+        remove_target "${target}" || return 1
+    done
     return 0
 }
 # =============================================================================

@@ -194,9 +194,9 @@ if(SNAPKIT_ENABLE_TEST)
   # checks  ===================================================================
   # splint  -------------------------------------------------------------------
   set(ET_SPLINT_INCLUDE_DIRS "${SNAPKIT_INCLUDE_DIRS}")
-  include(../dependencies/et-splint/Module.cmake)
+  include(../et-splint/Module.cmake)
   # cpplint  ------------------------------------------------------------------
-  include(../dependencies/et-cpplint/Module.cmake)
+  include(../et-cpplint/Module.cmake)
   # LD_LIBRARY_PATH  ----------------------------------------------------------
   set(LD_LIBRARY_PATH "")
   foreach(loop_var IN LISTS SNAPKIT_LIBRARY_DIRS)

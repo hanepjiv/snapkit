@@ -196,7 +196,16 @@ if(SNAPKIT_ENABLE_TEST)
   set(ET_SPLINT_INCLUDE_DIRS "${SNAPKIT_INCLUDE_DIRS}")
   include(../et-splint/Module.cmake)
   # cpplint  ------------------------------------------------------------------
-  include(../et-cpplint/Module.cmake)
+  find_program(CPPLINT cpplint)
+  if(NOT CPPLINT)
+    message(FATAL_ERROR "Test feature requires cpplint.")
+  endif()
+  set(CPPLINT_FLAGS
+    "--filter=+build/c++17"
+    "--recursive"
+    "--extensions=c,cpp"
+    "--headers='h,hh'"
+  )
   # LD_LIBRARY_PATH  ----------------------------------------------------------
   set(LD_LIBRARY_PATH "")
   foreach(loop_var IN LISTS SNAPKIT_LIBRARY_DIRS)

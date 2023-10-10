@@ -44,7 +44,7 @@
 # define SNAPKIT_USING_NAMESPACE_STD
 #endif  /* !__cplusplus */
 /* ========================================================================= */
-#define SNAPKIT_TRACE_ALWAYS_II(d, line)                                        \
+#define SNAPKIT_TRACE_ALWAYS_II(d, line)                                \
   do {                                                                  \
     SNAPKIT_USING_NAMESPACE_STD;                                        \
     (void) fputs(PACKAGE_STRING ": " __FILE__ "(" #line "): " d "\n",   \
@@ -64,7 +64,7 @@
             __VA_ARGS__);                                               \
     (void) fflush(stderr);                                              \
   } while (0)
-# define SNAPKIT_TRACEF_ALWAYS_I(line, fmt, ...)                \
+# define SNAPKIT_TRACEF_ALWAYS_I(line, fmt, ...)        \
   SNAPKIT_TRACEF_ALWAYS_II(line, fmt, __VA_ARGS__)
 # define SNAPKIT_TRACEF_ALWAYS(fmt, ...)                \
   SNAPKIT_TRACEF_ALWAYS_I(__LINE__, fmt, __VA_ARGS__)
@@ -76,7 +76,7 @@
       abort();                                  \
     }                                           \
   } while (0)
-#define SNAPKIT_ASSERT_ALWAYS_I(c, t, d)               SNAPKIT_ASSERT_ALWAYS_II(c,t,d)
+#define SNAPKIT_ASSERT_ALWAYS_I(c, t, d)       SNAPKIT_ASSERT_ALWAYS_II(c,t,d)
 #define SNAPKIT_ASSERT_ALWAYS(c, d)            SNAPKIT_ASSERT_ALWAYS_I(c,#c,d)
 /* ///////////////////////////////////////////////////////////////////////// */
 /* ========================================================================= */
@@ -95,8 +95,8 @@
 /* ------------------------------------------------------------------------- */
 # define SNAPKIT_TRACE_VERBOSITY_II(l, d)                               \
   do { if (SNAPKIT_VERBOSITY <= (l)) { SNAPKIT_TRACE(d); } } while (0)
-# define SNAPKIT_TRACE_VERBOSITY_I(l, d)                SNAPKIT_TRACE_VERBOSITY_II(l, d)
-# define SNAPKIT_TRACE_VERBOSITY(l, d)          SNAPKIT_TRACE_VERBOSITY_I(l, d)
+# define SNAPKIT_TRACE_VERBOSITY_I(l, d)  SNAPKIT_TRACE_VERBOSITY_II(l, d)
+# define SNAPKIT_TRACE_VERBOSITY(l, d)    SNAPKIT_TRACE_VERBOSITY_I(l, d)
 /* ------------------------------------------------------------------------- */
 # if (defined(SNAPKIT_VERBOSITY) &&                     \
       SNAPKIT_VERBOSITY <= SNAPKIT_VERBOSITY_DEBUG)
@@ -164,7 +164,7 @@
 #     define SNAPKIT_TRACEF_DEBUG_I(fmt, ...)   \
   SNAPKIT_TRACEF_DEBUG_II(fmt, __VA_ARGS__)
 #     define SNAPKIT_TRACEF_DEBUG(fmt, ...)     \
-    SNAPKIT_TRACEF_DEBUG_I(fmt, __VA_ARGS__)
+  SNAPKIT_TRACEF_DEBUG_I(fmt, __VA_ARGS__)
 #   else
 #     define SNAPKIT_TRACEF_DEBUG(fmt, ...)     ((void)(0))
 #   endif
@@ -183,7 +183,7 @@
 /* ------------------------------------------------------------------------- */
 #   if (defined(SNAPKIT_VERBOSITY) &&                   \
         SNAPKIT_VERBOSITY <= SNAPKIT_VERBOSITY_WARNING)
-#     define SNAPKIT_TRACEF_WARNING_II(fmt, ...) \
+#     define SNAPKIT_TRACEF_WARNING_II(fmt, ...)        \
   SNAPKIT_TRACEF(fmt, __VA_ARGS__)
 #     define SNAPKIT_TRACEF_WARNING_I(fmt, ...) \
   SNAPKIT_TRACEF_WARNING_II(fmt, __VA_ARGS__)
@@ -209,7 +209,7 @@
         SNAPKIT_VERBOSITY <= SNAPKIT_VERBOSITY_CRITICAL)
 #     define SNAPKIT_TRACEF_CRITICAL_II(fmt, ...)       \
   SNAPKIT_TRACEF(fmt, __VA_ARGS__)
-#     define SNAPKIT_TRACEF_CRITICAL_I(fmt, ...) \
+#     define SNAPKIT_TRACEF_CRITICAL_I(fmt, ...)        \
   SNAPKIT_TRACEF_CRITICAL_II(fmt, __VA_ARGS__)
 #     define SNAPKIT_TRACEF_CRITICAL(fmt, ...)  \
   SNAPKIT_TRACEF_CRITICAL_I(fmt, __VA_ARGS__)
@@ -223,7 +223,7 @@
 # define SNAPKIT_ASSERT_VERBOSITY_II(l, c, d)                           \
   do { if (SNAPKIT_VERBOSITY <= (l)) { SNAPKIT_ASSERT(c, d); } } while (0)
 # define SNAPKIT_ASSERT_VERBOSITY_I(l, c, d)    \
-    SNAPKIT_ASSERT_VERBOSITY_II(l, c, d)
+  SNAPKIT_ASSERT_VERBOSITY_II(l, c, d)
 # define SNAPKIT_ASSERT_VERBOSITY(l, c, d)      \
   SNAPKIT_ASSERT_VERBOSITY_I(l, c, d)
 /* ------------------------------------------------------------------------- */
@@ -265,11 +265,11 @@
 /* ------------------------------------------------------------------------- */
 # if (defined(SNAPKIT_VERBOSITY) &&                     \
       SNAPKIT_VERBOSITY <= SNAPKIT_VERBOSITY_CRITICAL)
-#   define SNAPKIT_ASSERT_CRITICAL_II(c, d)     SNAPKIT_ASSERT(c, d)
-#   define SNAPKIT_ASSERT_CRITICAL_I(c, d)      SNAPKIT_ASSERT_CRITICAL_II(c, d)
-#   define SNAPKIT_ASSERT_CRITICAL(c, d)        SNAPKIT_ASSERT_CRITICAL_I(c, d)
+#   define SNAPKIT_ASSERT_CRITICAL_II(c, d)   SNAPKIT_ASSERT(c, d)
+#   define SNAPKIT_ASSERT_CRITICAL_I(c, d)    SNAPKIT_ASSERT_CRITICAL_II(c, d)
+#   define SNAPKIT_ASSERT_CRITICAL(c, d)      SNAPKIT_ASSERT_CRITICAL_I(c, d)
 # else
-#   define SNAPKIT_ASSERT_CRITICAL(c, d)        ((void)(0))
+#   define SNAPKIT_ASSERT_CRITICAL(c, d)      ((void)(0))
 # endif
 #else  /* SNAPKIT_DEBUG //////////////////////////////////////////////////// */
 /* ========================================================================= */

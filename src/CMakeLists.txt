@@ -35,10 +35,13 @@ if(SNAPKIT_ENABLE_TEST)
     list(APPEND SNAPKIT_SRC_TEST_EXE src-splint)
   endif()
   # cpplint  ------------------------------------------------------------------
-  if(PYTHON)
-    add_test(src-cpplint ${CPPLINT_SH})
-    list(APPEND SNAPKIT_SRC_TEST_EXE src-cpplint)
-  endif()
+  add_test(NAME src-cpplint COMMAND ${CPPLINT}
+    ${CPPLINT_FLAGS}
+    "--repository=${CMAKE_SOURCE_DIR}"
+    "--root=src"
+    "${CMAKE_CURRENT_SOURCE_DIR}"
+  )
+  list(APPEND SNAPKIT_SRC_TEST_EXE src-cpplint)
   # environment  --------------------------------------------------------------
   set(TEST_ENV_ "${TEST_ENV}")
   list(APPEND TEST_ENV_ "SRCDIR=${CMAKE_CURRENT_SOURCE_DIR}")

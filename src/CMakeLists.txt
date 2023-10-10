@@ -30,10 +30,8 @@ if(SNAPKIT_ENABLE_TEST)
   # ---------------------------------------------------------------------------
   set(SNAPKIT_SRC_TEST_EXE)
   # splint  -------------------------------------------------------------------
-  if(SPLINT)
-    add_test(src-splint ${SPLINT_SH})
-    list(APPEND SNAPKIT_SRC_TEST_EXE src-splint)
-  endif()
+  add_test(NAME src-splint COMMAND ${SPLINT_SH} ${CMAKE_CURRENT_SOURCE_DIR})
+  list(APPEND SNAPKIT_SRC_TEST_EXE src-splint)
   # cpplint  ------------------------------------------------------------------
   add_test(NAME src-cpplint COMMAND ${CPPLINT}
     ${CPPLINT_FLAGS}

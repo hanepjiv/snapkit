@@ -16,7 +16,7 @@ set(SNAPKIT_URL         "https://")
 # -----------------------------------------------------------------------------
 if(${SNAPKIT_CURRENT} LESS ${SNAPKIT_AGE})
   message(FATAL_ERROR
-    "SNAPKIT_AGE `${SNAPKIT_AGE}' is greater than the current interface number `${SNAPKIT_CURRENT}'.")
+    "SNAPKIT_AGE ${SNAPKIT_AGE} is greater than the current interface number ${SNAPKIT_CURRENT}.")
 endif()
 # -----------------------------------------------------------------------------
 string(TOUPPER ${SNAPKIT_PACKAGE} SNAPKIT_PACKAGE_UPPER)
@@ -193,8 +193,24 @@ if(SNAPKIT_ENABLE_TEST)
   enable_testing()
   # checks  ===================================================================
   # splint  -------------------------------------------------------------------
-  set(ET_SPLINT_INCLUDE_DIRS "${SNAPKIT_INCLUDE_DIRS}")
-  include(../et-splint/Module.cmake)
+  find_program(SPLINT splint)
+  if(NOT SPLINT)
+    message(FATAL_ERROR "Test feature requires splint.")
+  endif()
+  set(SPLINT_FLAGS "+matchanyintegral -noeffect")
+  foreach(loop_var ${SNAPKIT_INCLUDE_DIRS})
+    set(SPLINT_FLAGS "${SPLINT_FLAGS} -I ${loop_var}")
+  endforeach()
+  set(SPLINT_SH "${PROJECT_BINARY_DIR}/splint.sh")
+  file(WRITE ${SPLINT_SH}
+    "#!/bin/env sh\n"
+    "find \$1 -type f \\( -name *.c \\) -exec ${SPLINT} ${SPLINT_FLAGS} {} +\n"
+    "exit $?\n\n"
+  )
+  file(CHMOD ${SPLINT_SH} PERMISSIONS
+    OWNER_READ OWNER_WRITE OWNER_EXECUTE
+    GROUP_READ GROUP_WRITE GROUP_EXECUTE
+  )
   # cpplint  ------------------------------------------------------------------
   find_program(CPPLINT cpplint)
   if(NOT CPPLINT)

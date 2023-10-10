@@ -7,11 +7,6 @@ add_subdirectory(snapkit)
 if(SNAPKIT_ENABLE_TEST)
   # ---------------------------------------------------------------------------
   set(SNAPKIT_INCLUDE_TEST_EXE)
-  # splint  -------------------------------------------------------------------
-  if(SPLINT)
-    add_test(include-splint ${SPLINT_SH})
-    list(APPEND SNAPKIT_INCLUDE_TEST_EXE include-splint)
-  endif()
   # cpplint  ------------------------------------------------------------------
   add_test(NAME include-cpplint COMMAND ${CPPLINT}
     ${CPPLINT_FLAGS}

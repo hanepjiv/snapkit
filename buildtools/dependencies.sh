@@ -11,8 +11,20 @@
 ##  @author hanepjiv <hanepjiv@gmail.com>
 ##  @copyright The MIT License (MIT)
 ##  @since 2023/09/29
-##  @date 2023/10/07
+##  @date 2023/10/10
 
+# /////////////////////////////////////////////////////////////////////////////
+# =============================================================================
+TARGETS=(
+    "et-splint"    # example
+    "et-cpplint"   # example
+)
+# -----------------------------------------------------------------------------
+et_splint_REPO="git@github.com:hanepjiv/et-splint.git"
+et_splint_B="master"
+# -----------------------------------------------------------------------------
+et_cpplint_REPO="git@github.com:hanepjiv/et-cpplint.git"
+et_cpplint_B="master"
 # /////////////////////////////////////////////////////////////////////////////
 # =============================================================================
 usage_() {
@@ -21,27 +33,16 @@ Usage: ${0}
 
         <ACTION> [-h | --help]
 
-        <ACTION>            : [clone | remove]
+        <ACTION>            : [clone]
         -h, --help          : print this help message
 EOF
 }
 # /////////////////////////////////////////////////////////////////////////////
 # =============================================================================
-TARGETS=( \
-          "et-splint" \
-              "et-cpplint" \
-    )
-# -----------------------------------------------------------------------------
-et_splint_REPO="git@github.com:hanepjiv/et-splint.git"
-et_splint_B="master"
-# -----------------------------------------------------------------------------
-et_cpplint_REPO="git@github.com:hanepjiv/et-cpplint.git"
-et_cpplint_B="master"
-# =============================================================================
 CURRENT_DIR="${PWD}"
 SH_SOURCE=${BASH_SOURCE:-$0}
 SH_SOURCE_DIR="$(cd $(dirname ${SH_SOURCE}); pwd)"
-OUTPUT_DIR="$(cd ${CURRENT_DIR}/..; pwd)"
+OUTPUT_DIR="$(cd ${SH_SOURCE_DIR}/../..; pwd)"
 # /////////////////////////////////////////////////////////////////////////////
 # =============================================================================
 clone_target() {
@@ -77,6 +78,7 @@ remove_target() {
     local target="${1}"
     local target_dir="${OUTPUT_DIR}/${target}"
 
+    echo "rm -rf ${target_dir}"
     rm -rf ${target_dir} ||  return 1
 
     return 0
@@ -92,7 +94,7 @@ remove() {
 while [ ${#} -gt 0 ]; do
     case ${1} in
         clone)          clone;  shift 1                         ;;
-        remove)         remove; shift 1                         ;;
+#        remove)         remove; shift 1                         ;;
         -h | --help)    usage_; exit 0                          ;;
         *)              echo "invalid argument: ${1}"; exit 1   ;;
     esac

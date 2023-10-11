@@ -193,35 +193,24 @@ if(SNAPKIT_ENABLE_TEST)
   enable_testing()
   # checks  ===================================================================
   # splint  -------------------------------------------------------------------
-  find_program(SPLINT splint)
-  if(NOT SPLINT)
-    message(FATAL_ERROR "Test feature requires splint.")
-  endif()
-  set(SPLINT_FLAGS "+matchanyintegral -noeffect")
-  foreach(loop_var ${SNAPKIT_INCLUDE_DIRS})
-    set(SPLINT_FLAGS "${SPLINT_FLAGS} -I ${loop_var}")
-  endforeach()
-  set(SPLINT_SH "${PROJECT_BINARY_DIR}/splint.sh")
-  file(WRITE ${SPLINT_SH}
-    "#!/bin/env sh\n"
-    "find \$1 -type f \\( -name *.c \\) -exec ${SPLINT} ${SPLINT_FLAGS} {} +\n"
-    "exit $?\n\n"
+  set(SPLINT_FLAGS
+    "+matchanyintegral"
+    "-noeffect"
   )
-  file(CHMOD ${SPLINT_SH} PERMISSIONS
-    OWNER_READ OWNER_WRITE OWNER_EXECUTE
-    GROUP_READ GROUP_WRITE GROUP_EXECUTE
-  )
+  set(SPLINT_INCLUDE_DIRS ${SNAPKIT_INCLUDE_DIRS})
+  include(SetSplint)
   # cpplint  ------------------------------------------------------------------
-  find_program(CPPLINT cpplint)
-  if(NOT CPPLINT)
-    message(FATAL_ERROR "Test feature requires cpplint.")
-  endif()
   set(CPPLINT_FLAGS
     "--filter=+build/c++17"
     "--recursive"
     "--extensions=c,cpp"
     "--headers='h,hh'"
   )
+  # ---------------------------------------------------------------------------
+  find_program(CPPLINT cpplint)
+  if(NOT CPPLINT)
+    message(FATAL_ERROR "Test feature requires cpplint.")
+  endif()
   # LD_LIBRARY_PATH  ----------------------------------------------------------
   set(LD_LIBRARY_PATH "")
   foreach(loop_var IN LISTS SNAPKIT_LIBRARY_DIRS)

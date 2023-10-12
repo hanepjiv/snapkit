@@ -58,9 +58,9 @@ set(SNAPKIT_LD_FLAGS                    "")
 # -----------------------------------------------------------------------------
 if (CMAKE_COMPILER_IS_GNUCC OR
     CMAKE_C_COMPILER_ID STREQUAL "Clang")       # GCC or Clang  ===============
-  set(SNAPKIT_C_CXX_FLAGS               "${SNAPKIT_C_CXX_FLAGS} -fno-asm -fno-builtin")
-  set(SNAPKIT_C_FLAGS                   "${SNAPKIT_C_FLAGS} -std=c99")
-  set(SNAPKIT_CXX_FLAGS                 "${SNAPKIT_CXX_FLAGS} -std=c++11 -fexceptions -frtti")
+  set(SNAPKIT_C_CXX_FLAGS "${SNAPKIT_C_CXX_FLAGS} -fno-asm -fno-builtin")
+  set(SNAPKIT_C_FLAGS "${SNAPKIT_C_FLAGS} -std=c99")
+  set(SNAPKIT_CXX_FLAGS "${SNAPKIT_CXX_FLAGS} -std=c++11 -fexceptions -frtti")
 endif()
 # -----------------------------------------------------------------------------
 if (CMAKE_COMPILER_IS_GNUCC)                    # GCC  ========================
@@ -203,10 +203,9 @@ if(SNAPKIT_ENABLE_TEST)
   set(CPPLINT_FLAGS
     "--filter=+build/c++17"
     "--recursive"
-    "--extensions=c,cpp"
+    "--extensions=c,cc,cpp"
     "--headers='h,hh'"
   )
-  # ---------------------------------------------------------------------------
   find_program(CPPLINT cpplint)
   if(NOT CPPLINT)
     message(FATAL_ERROR "Test feature requires cpplint.")

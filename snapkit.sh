@@ -11,7 +11,7 @@
 ##  @author hanepjiv <hanepjiv@gmail.com>
 ##  @copyright The MIT License (MIT) / Apache License Version 2.0
 ##  @since 2017/01/01
-##  @date 2023/10/07
+##  @date 2023/10/12
 
 # /////////////////////////////////////////////////////////////////////////////
 # =============================================================================
@@ -42,7 +42,7 @@ snapkit_(){
     local MAIL_NAME=${2}
     local MAIL_DOMAIN=${3}
     local TARGET=${4}
-    local TARGET_DIR="${TARGET}/orig"
+    local TARGET_DIR="${TARGET}/${TARGET}"
     local TARGET_LOWER=`echo ${TARGET} | tr [A-Z] [a-z]`
     local TARGET_UPPER=`echo ${TARGET} | tr [a-z] [A-Z]`
     local TODAY=`date +%Y/%m/%d`
